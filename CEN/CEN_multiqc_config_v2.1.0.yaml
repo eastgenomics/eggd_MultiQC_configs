@@ -259,7 +259,6 @@ table_cond_formatting_rules:
             - eq: 1800
             - gt: 1800
 
-
     # all_columns:
     #     pass:
     #         - s_eq: 'pass'
@@ -355,6 +354,11 @@ custom_data:
             Match_Sexes:
                 title: 'Matching sex'
                 description: 'Whether reported and predicted sex of sample match'
+
+# Add a fixed scale of the Y-axis on the Picard GC bias plot
+custom_plot_config:
+    picard_gcbias_plot:
+        yCeiling: 100
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
