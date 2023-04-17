@@ -435,7 +435,6 @@ dx_sp:
             - '*.flagstat'
         vcf_qc:
             - '*.vcf.QC'
-    secondary:
         somalier_relate2multiqc:
             - '*_somalier.samples.tsv'
         vcfeval_hap.py:
