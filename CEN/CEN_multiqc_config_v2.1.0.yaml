@@ -55,7 +55,7 @@ extra_fn_clean_exts:
     - type: remove
       pattern: '.markdup'
     - type: remove
-      pattern: '_markdup' 
+      pattern: '_markdup'
     - type: remove
       pattern: '.realigned'
     - type: remove
@@ -166,7 +166,7 @@ table_cond_formatting_colours:
 
 # Set conditional formatting rules for general stats
 table_cond_formatting_rules:
-    mqc-generalstats-picard-PCT_TARGET_BASES_20X: # Percentage of target bases at 20x    
+    mqc-generalstats-picard-PCT_TARGET_BASES_20X: # Percentage of target bases at 20x
         pass:                                     # number in name depends on what is set above
             - lt: 101
         warn:
@@ -435,6 +435,11 @@ dx_sp:
             - '*.flagstat'
         vcf_qc:
             - '*.vcf.QC'
+        somalier_relate2multiqc:
+            - '*_somalier.samples.tsv'
+        vcfeval_hap.py:
+            - "*.summary.csv"
+    secondary:
         somalier_relate2multiqc:
             - '*_somalier.samples.tsv'
         vcfeval_hap.py:
