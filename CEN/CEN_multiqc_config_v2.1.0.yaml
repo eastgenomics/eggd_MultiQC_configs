@@ -357,7 +357,7 @@ custom_data:
 
 # Add a fixed scale of the Y-axis on the Picard GC bias plot
 custom_plot_config:
-    picard_gcbias_plot:
+    sentieon_gcbias_plot:
         yCeiling: 100
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
