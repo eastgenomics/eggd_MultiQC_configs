@@ -115,6 +115,8 @@ module_order:
             - DNA
     - 'custom_content'
     - verifybamid:
+        info: "detects sample contamination. \n The following values provide estimates of sample contamination. Click help for more information.
+"
         module_tag:
             - DNA
     - picard:
