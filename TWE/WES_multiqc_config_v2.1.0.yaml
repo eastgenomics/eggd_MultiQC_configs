@@ -346,6 +346,11 @@ custom_data:
                 title: 'Matching sex'
                 description: 'Whether reported and predicted sex of sample match'
 
+# Add a fixed scale of the Y-axis on the Picard GC bias plot
+custom_plot_config:
+    sentieon_gcbias_plot:
+        yCeiling: 100
+
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
 sp:
