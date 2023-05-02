@@ -51,11 +51,11 @@ make_data_dir: True
 # extra_fn_clean_exts will append to the defaults
 extra_fn_clean_exts:
     - type: remove
-      pattern: '_001'      
+      pattern: '_001'
     - type: remove
       pattern: '.markdup'
     - type: remove
-      pattern: '_markdup' 
+      pattern: '_markdup'
     - type: remove
       pattern: '.realigned'
     - type: remove
@@ -158,7 +158,7 @@ table_cond_formatting_colours:
 # Set conditional formatting rules for general stats
 table_cond_formatting_rules:
     # Columns in the General Statistics table
-    mqc-generalstats-picard-PCT_TARGET_BASES_20X: # Percentage of target bases at 20x    
+    mqc-generalstats-picard-PCT_TARGET_BASES_20X: # Percentage of target bases at 20x
         pass:                                     # number in name depends on what is set above
             - lt: 101
         warn:
