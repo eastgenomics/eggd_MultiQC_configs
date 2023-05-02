@@ -51,11 +51,11 @@ make_data_dir: True
 # extra_fn_clean_exts will append to the defaults
 extra_fn_clean_exts:
     - type: remove
-      pattern: '_001'      
+      pattern: '_001'
     - type: remove
       pattern: '.markdup'
     - type: remove
-      pattern: '_markdup' 
+      pattern: '_markdup'
     - type: remove
       pattern: '.realigned'
     - type: remove
@@ -92,7 +92,7 @@ no_version_check: False
 # can prevent automatically rendering all graphs if there are lots of samples
 # to prevent the browser being locked up when the report opens.
 plots_force_flat: False          # Try to use only flat image graphs
-plots_force_interactive: False   # Try to use only interactive javascript graphs
+plots_force_interactive: True   # Try to use only interactive javascript graphs
 plots_flat_numseries: 200        # If neither of the above, use flat if > this number of datasets
 num_datasets_plot_limit: 100      # If interactive, don't plot on load if > this number of datasets
 max_table_rows: 500              # Swap tables for a beeswarm plot above this
@@ -105,6 +105,7 @@ module_order:
             - DNA
     - 'custom_content'
     - verifybamid:
+        info: "detects sample contamination."
         module_tag:
             - DNA
     - picard:
@@ -158,7 +159,7 @@ table_cond_formatting_colours:
 # Set conditional formatting rules for general stats
 table_cond_formatting_rules:
     # Columns in the General Statistics table
-    mqc-generalstats-picard-PCT_TARGET_BASES_20X: # Percentage of target bases at 20x    
+    mqc-generalstats-picard-PCT_TARGET_BASES_20X: # Percentage of target bases at 20x
         pass:                                     # number in name depends on what is set above
             - lt: 101
         warn:
@@ -346,6 +347,11 @@ custom_data:
                 title: 'Matching sex'
                 description: 'Whether reported and predicted sex of sample match'
 
+# Add a fixed scale of the Y-axis on the Picard GC bias plot
+custom_plot_config:
+    sentieon_gcbias_plot:
+        yCeiling: 100
+
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
 sp:
@@ -421,6 +427,10 @@ dx_sp:
             - '*.flagstat'
         vcf_qc:
             - '*.vcf.QC'
+        somalier_relate2multiqc:
+            - '*_somalier.samples.tsv'
+        vcfeval_hap.py:
+            - "*.summary.csv"
     secondary:
         somalier_relate2multiqc:
             - '*_somalier.samples.tsv'
