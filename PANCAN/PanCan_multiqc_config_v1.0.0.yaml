@@ -110,6 +110,10 @@ module_order:
             module_tag:
                 - RNA
 
+table_columns_visible:
+    FastQC:
+        avg_sequence_length: True
+
 # Specify order in which table columns are visible in General Statistics
 table_columns_placement:
     general_stats_table:
