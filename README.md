@@ -5,7 +5,7 @@ This is a mirror of the confluence page [eggd_MultiQC config files](https://cuhb
 There are multiple assays which uses different multiQC configs, the list are as follows:
 
 :one: CEN  
-:two: legacy (dias, FH,)  
+:two: legacy (dias, FH, gemini)  
 :three: MYE  
 :four: PANCAN  
 :five: SNP  
