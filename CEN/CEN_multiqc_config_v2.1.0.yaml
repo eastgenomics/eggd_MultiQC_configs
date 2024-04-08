@@ -152,11 +152,35 @@ table_columns_placement:
         percent_duplicates: 980
         PCT_PF_READS_ALIGNED: 990
         summed_median: 1000
+    picard_hsmetrics_table: # Specify the order in which table columns are visible in HSmetrics
+        BAIT_DESIGN_EFFICIENCY: 780
+        FOLD_80_BASE_PENALTY: 790
+        FOLD_ENRICHMENT: 800
+        HET_SNP_Q: 810
+        HET_SNP_SENSITIVITY: 820
+        MAX_TARGET_COVERAGE: 830
+        MEAN_BAIT_COVERAGE: 840
+        MEAN_TARGET_COVERAGE: 850
+        MEDIAN_TARGET_COVERAGE: 860
+        NEAR_BAIT_BASES: 870
+        OFF_BAIT_BASES: 880
+        ON_BAIT_BASES: 890
+        ON_BAIT_VS_SELECTED: 900
+        ON_TARGET_BASES: 910
+        PCT_USABLE_BASES_ON_BAIT: 920
+        PCT_USABLE_BASES_ON_TARGET: 930
+        PF_BASES_ALIGNED: 940
+        PF_READS: 950
+        PF_UNIQUE_READS: 960
+        PF_UQ_BASES_ALIGNED: 970
+        PF_UQ_READS_ALIGNED: 980
+        ZERO_CVG_TARGETS_PCT: 990
+        PCT_SELECTED_BASES: 1000
 
 # Set picard configs: TARGET BASES COVERAGE
 picard_config:
     general_stats_target_coverage: # should be referred to as 'mqc-generalstats-picard-PCT_TARGET_BASES_20X'
-        - 20                           # for conditional table formatting
+        - 20                        # for conditional table formatting
 
 table_cond_formatting_colours:
     - blue: '#337ab7'
@@ -164,6 +188,7 @@ table_cond_formatting_colours:
     - pass: '#5cb85c'
     - warn: '#f0ad4e'
     - fail: '#d9534f'
+
 
 # Set conditional formatting rules for general stats
 table_cond_formatting_rules:
@@ -360,6 +385,11 @@ custom_data:
 custom_plot_config:
     sentieon_gcbias_plot:
         yCeiling: 100
+
+custom_table_header_config:
+    picard_hsmetrics_table:
+        FOLD_80_BASE_PENALTY:
+            format: "{:,.3f}"
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
