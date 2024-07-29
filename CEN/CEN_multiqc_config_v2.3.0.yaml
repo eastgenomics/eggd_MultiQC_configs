@@ -262,16 +262,6 @@ table_cond_formatting_rules:
             - lt: 1.000
         fail:
             - lt: 0.990
-    Match_Sexes:  # Somalier Matching Sex column
-        true:
-            - s_eq: 'pass'
-        fail:
-            - s_eq: 'fail'
-        warn:
-            - s_eq: 'NA'
-    original_pedigree_sex: # Somalier Reported sex column
-        warn:
-            - s_eq: 'none'
     FOLD_ENRICHMENT: # Picard HSMetrics fold enrichment column
         pass:
             - gt: 1350
@@ -323,63 +313,6 @@ custom_data:
                 format:  '{:,.2f}'
             # gender:
             #     title:  'Inferred sex'
-    somalier_files:
-        file_format: 'tsv'
-        section_name: 'Somalier sex check'
-        description: 'Checking predicted sex is same as reported'
-        plot_type: 'table'
-        pconfig:
-            id: 'somalier_table'
-            table_title: 'Sex check'
-            'col1_header': 'sample_id'
-            'col7_header': 'original_pedigree_sex'
-            'col19_header': 'X_depth_mean'
-            'col20_header': 'X_n'
-            'col21_header': 'X_hom_ref'
-            'col22_header': 'X_het'
-            'col23_header': 'X_hom_alt'
-            'col24_header': 'Y_depth_mean'
-            'col25_header': 'Y_n'
-            'col26_header': 'Predicted_Sex'
-            'col27_header': 'Match_Sexes'
-        headers:
-            sample_id:
-                title: 'Sample ID'
-            original_pedigree_sex:
-                title: 'Reported sex'
-                description: 'Expected sex reported from filename'
-            X_depth_mean:
-                title: 'X_depth_mean'
-                description: 'Mean depth on X chromosome'
-            X_n:
-                title: 'X total'
-                description: 'Total variant calls on X chromosome'
-                format:  '{:,.0f}'
-            X_hom_ref:
-                title: 'X_hom_ref'
-                description: 'Homozygous ref variant calls on X chromosome'
-                format:  '{:,.0f}'
-            X_het:
-                title: 'X_het'
-                description: 'Heterozygosity variant calls on X chromosome'
-                format:  '{:,.0f}'
-            X_hom_alt:
-                title: 'X_hom_alt'
-                description: 'Homozygous alt variant calls on X chromosome'
-                format:  '{:,.0f}'
-            Y_depth_mean:
-                title: 'Y_depth_mean'
-                description: 'Mean depth on Y chromosome'
-            Y_n:
-                title: 'Y_n'
-                description: 'Total variant calls on Y chromosome'
-                format:  '{:,.0f}'
-            Predicted_Sex:
-                title: 'Predicted sex'
-                description: 'Predicted sex based on thresholds on X_het'
-            Match_Sexes:
-                title: 'Matching sex'
-                description: 'Whether reported and predicted sex of sample match'
 
 # Add a fixed scale of the Y-axis on the Picard GC bias plot
 custom_plot_config:
@@ -433,8 +366,6 @@ sp:
         contents: "Type,Filter,TRUTH"
     vcf_qc_files:
         fn: '*.vcf.QC'
-    somalier_files:
-        fn: '*_somalier.samples.tsv'
 
 # Remove plots from HTML report
 # remove_sections:
@@ -466,12 +397,8 @@ dx_sp:
             - '*.flagstat'
         vcf_qc:
             - '*.vcf.QC'
-        somalier_relate2multiqc:
-            - '*_somalier.samples.tsv'
         vcfeval_hap.py:
             - "*.summary.csv"
     secondary:
-        somalier_relate2multiqc:
-            - '*_somalier.samples.tsv'
         vcfeval_hap.py:
             - "*.summary.csv"
