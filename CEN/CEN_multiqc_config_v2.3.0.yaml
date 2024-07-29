@@ -399,6 +399,8 @@ dx_sp:
             - '*.vcf.QC'
         vcfeval_hap.py:
             - "*.summary.csv"
+        sex_check:
+            - "*_mqc.json"
     secondary:
         vcfeval_hap.py:
             - "*.summary.csv"
