@@ -201,8 +201,8 @@ table_cond_formatting_rules:
     mqc-generalstats-sentieon-summed_median: # Sentieon Insert Size column in General Stats
         pass:
             - gt: 190
-        warn:
             - eq: 190
+        warn:
             - lt: 190
     # Columns in tables from other modules
     mean_het: # vcf_qc mean_het column
