@@ -246,7 +246,8 @@ table_cond_formatting_rules:
             - lt: 0.820
     METRIC_Recall_snp:  # Happy snp Recall outputs
         pass:
-            - eq: 1.00
+            - gt: 0.986
+            - eq: 0.986
         warn:
             - lt: 0.986
         fail:
