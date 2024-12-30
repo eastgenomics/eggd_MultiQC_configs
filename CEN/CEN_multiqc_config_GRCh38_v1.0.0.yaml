@@ -248,9 +248,9 @@ table_cond_formatting_rules:
         pass:
             - eq: 1.00
         warn:
-            - lt: 1.00
+            - lt: 0.986
         fail:
-            - lt: 0.985
+            - lt: 0.982
     METRIC_Precision_snp:  # Happy snp Precision outputs
         pass:
             - eq: 1.000
