@@ -278,17 +278,6 @@ table_cond_formatting_rules:
             - lt: 1350
             - eq: 1350
 
-    # all_columns:
-    #     pass:
-    #         - s_eq: 'pass'
-    #         - s_eq: 'true'
-    #     warn:
-    #         - s_eq: 'warn'
-    #         - s_eq: 'unknown'
-    #     fail:
-    #         - s_eq: 'fail'
-    #         - s_eq: 'false'
-
 # Add code to include data from custom QC data files
 custom_data:
     vcf_qc_files:
