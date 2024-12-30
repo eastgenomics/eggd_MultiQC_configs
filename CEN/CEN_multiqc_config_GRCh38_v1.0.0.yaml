@@ -273,7 +273,7 @@ table_cond_formatting_rules:
             - gt: 1400
         warn:
             - eq: 1400
-            - gt: 1400
+            - lt: 1400
         fail:
             - lt: 1350
             - eq: 1350
