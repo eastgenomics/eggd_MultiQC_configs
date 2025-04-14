@@ -87,9 +87,6 @@ module_order:
     - picard:
         module_tag:
             - DNA
-    - sentieon:
-        module_tag:
-            - DNA
     - samtools:
         module_tag:
             - DNA
