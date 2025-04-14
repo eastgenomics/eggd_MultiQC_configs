@@ -76,16 +76,6 @@ extra_fn_clean_exts:
       pattern: '.MeanQualityByCycle_metrics'
     - type: remove
       pattern: '.QualDistribution_metrics'
-    # - .gz
-    # - .fastq
-    # - .fq
-    # - .bam
-    # - .sam
-    # - _fastqc
-    # - type: replace
-    #   pattern: '.sorted'
-    # - type: regex
-    #   pattern: '^Sample_\d+'
 
 # Ignore files larger than this when searcing for logs (bytes)
 log_filesize_limit: 5000000000
