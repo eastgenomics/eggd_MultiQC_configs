@@ -437,14 +437,11 @@ dx_sp:
             - '*.Duplication_metrics.txt'
             - '*.GCBias_metrics.txt'
             - '*.InsertSize_metrics.txt'
-            # - '*.MeanQualityByCycle_metrics.txt'
-            # - '*.QualDistribution_metrics.txt'
         picard/QC:
             - '*.hsmetrics.tsv'
             - '*.pertarget_coverage.tsv'
         verifybamid/QC:
             - '*.selfSM'
-            # - '*.depthSM'
         samtools:
             - '*.flagstat'
         vcf_qc:
