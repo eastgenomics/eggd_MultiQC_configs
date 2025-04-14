@@ -50,32 +50,8 @@ make_data_dir: True
 # Two options here - fn_clean_exts will replace the defaults,
 # extra_fn_clean_exts will append to the defaults
 extra_fn_clean_exts:
-    - type: remove
-      pattern: '_001'
-    - type: remove
-      pattern: '.markdup'
-    - type: remove
-      pattern: '_markdup'
-    - type: remove
-      pattern: '.realigned'
-    - type: remove
-      pattern: '_metrics'
-    - type: remove
-      pattern: '.Duplication_metrics'
-    - type: remove
-      pattern: '.Duplication'
-    - type: remove
-      pattern: '.duplication'
-    - type: remove
-      pattern: '.AlignmentStat'
-    - type: remove
-      pattern: '.GCBias'
-    - type: remove
-      pattern: '.InsertSize'
-    - type: remove
-      pattern: '.MeanQualityByCycle_metrics'
-    - type: remove
-      pattern: '.QualDistribution_metrics'
+    - type: regex_keep
+      pattern: "(?:[A-Za-z0-9]+-){5}[A-Za-z0-9]+"
 
 # Ignore files larger than this when searcing for logs (bytes)
 log_filesize_limit: 5000000000
