@@ -127,10 +127,9 @@ table_columns_placement:
         ZERO_CVG_TARGETS_PCT: 990
         PCT_SELECTED_BASES: 1000
 
-# Set picard configs: TARGET BASES COVERAGE
 picard_config:
-    general_stats_target_coverage: # should be referred to as 'mqc-generalstats-picard-PCT_TARGET_BASES_20X'
-        - 20                        # for conditional table formatting
+    general_stats_target_coverage: 
+        - 20 # This is where "Target Bases 20X" comes from in general stats
 
 table_cond_formatting_colours:
     - blue: '#337ab7'
