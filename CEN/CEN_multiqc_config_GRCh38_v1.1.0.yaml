@@ -138,8 +138,8 @@ table_cond_formatting_colours:
 
 # set conditional formatting rules
 table_cond_formatting_rules:
-    mqc-generalstats-picard-PCT_TARGET_BASES_20X: # Percentage of target bases at 20x
-        pass:                                     # number in name depends on what is set above
+    picard_hsmetrics-picard_target_bases_20X: # Percentage of target bases at 20x
+        pass:                                 # number in name depends on what is set above
             - lt: 101
         warn:
             - eq: 99.9
@@ -147,37 +147,30 @@ table_cond_formatting_rules:
         fail:
             - eq: 99.0
             - lt: 99.0
-    mqc-generalstats-verifybamid-FREEMIX: #verifyBamId Contamination column in General Stats
+    verifybamid-FREEMIX:
         pass:
-            - lt: 1
+            - lt: 1.0
         fail:
-            - eq: 1
-            - gt: 1
-    mqc-generalstats-sentieon-summed_median: # Sentieon Insert Size column in General Stats
+            - eq: 1.0
+            - gt: 1.0
+    picard_insertsizemetrics-summed_median:
         pass:
             - gt: 175
             - eq: 175
         warn:
             - lt: 175
-# Set conditional formatting rules for other modules
     mean_het: # vcf_qc mean_het column
         pass:
             - gt: 0
         fail:
             - lt: 0.455
             - gt: 0.486
-    FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
+    hsmetrics-FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
         pass:
             - lt: 1.30
         warn:
             - eq: 1.30
             - gt: 1.30
-    FREEMIX: #verifyBamId Contamination column in verifybamid
-        pass:
-            - lt: 1
-        fail:
-            - eq: 1
-            - gt: 1
     METRIC_Recall_indel: # Happy indel Recall outputs
         pass:
             - gt: 0.800
@@ -215,7 +208,7 @@ table_cond_formatting_rules:
     original_pedigree_sex: # Somalier Reported sex column
         warn:
             - s_eq: 'none'
-    FOLD_ENRICHMENT: # Picard HSMetrics fold enrichment column
+    hsmetrics-FOLD_ENRICHMENT: # Picard HSMetrics fold enrichment column
         pass:
             - gt: 1400
         warn:
