@@ -94,12 +94,11 @@ table_columns_visible:
 # Specify order in which table columns are visible
 table_columns_placement:
     general_stats_table:
-        mapped_passed: 950
-        FREEMIX: 960
-        PCT_TARGET_BASES_20X: 970
-        percent_duplicates: 980
-        PCT_PF_READS_ALIGNED: 990
-        summed_median: 1000
+        samtools_flagstat-mapped_passed: 950
+        verifybamid-FREEMIX: 960
+        picard_hsmetrics-picard_target_bases_20X: 970
+        fastqc-percent_duplicates: 980
+        picard_insertsizemetrics-summed_median: 1000
     picard_hsmetrics_table: # Specify the order in which table columns are visible in HSmetrics
         BAIT_DESIGN_EFFICIENCY: 780
         FOLD_80_BASE_PENALTY: 790
@@ -117,13 +116,14 @@ table_columns_placement:
         ON_TARGET_BASES: 910
         PCT_USABLE_BASES_ON_BAIT: 920
         PCT_USABLE_BASES_ON_TARGET: 930
-        PF_BASES_ALIGNED: 940
-        PF_READS: 950
-        PF_UNIQUE_READS: 960
-        PF_UQ_BASES_ALIGNED: 970
-        PF_UQ_READS_ALIGNED: 980
-        ZERO_CVG_TARGETS_PCT: 990
-        PCT_SELECTED_BASES: 1000
+        PF_BASES: 940
+        PF_BASES_ALIGNED: 950
+        PF_READS: 960
+        PF_UNIQUE_READS: 970
+        PF_UQ_BASES_ALIGNED: 980
+        PF_UQ_READS_ALIGNED: 990
+        ZERO_CVG_TARGETS_PCT: 1000
+        PCT_SELECTED_BASES: 1100
 
 picard_config:
     general_stats_target_coverage: 
