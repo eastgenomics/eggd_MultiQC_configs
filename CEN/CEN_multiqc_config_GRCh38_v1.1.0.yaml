@@ -296,17 +296,17 @@ custom_data:
 
 # Add a fixed scale of the Y-axis on the Picard GC bias plot
 custom_plot_config:
-    sentieon_gcbias_plot:
-        yCeiling: 100
+    picard_gcbias_plot:
+        y_clipmax: 100
 
 custom_table_header_config:
+    general_stats_table:
+        PCT_TARGET_BASES_20X:
+            format: "{:,.2f}"
     picard_hsmetrics_table:
         FOLD_80_BASE_PENALTY:
             format: "{:,.3f}"
         FOLD_ENRICHMENT:
-            format: "{:,.2f}"
-    general_stats_table:
-        PCT_TARGET_BASES_20X:
             format: "{:,.2f}"
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
@@ -314,22 +314,37 @@ custom_table_header_config:
 sp:
     bcl2fastq:
         fn: 'Stats.json'
+        shared: false
     fastqc/data:
         fn: '*.stats-fastqc.txt'
+        shared: false
+    picard/alignment_metrics:
+        fn: '*alignment_summary_metrics'
+        shared: true
+    picard/gcbias:
+        fn: '*gc_bias*metrics'
+        shared: true
     picard/hsmetrics:
         fn: '*.hsmetrics.tsv'
+        shared: true
+    picard/insertsize:
+        fn: '*insert_size_metrics'
         shared: true
     picard/pcr_metrics:
         fn: '*.pertarget_coverage.tsv'
         shared: true
     picard/quality_by_cycle:
-        fn: '*.MeanQualityByCycle_metrics.txt'
+        fn: '*.quality_by_cycle_metrics.txt'
         shared: true
     picard/quality_score_distribution:
-        fn: '*.QualDistribution_metrics.txt'
+        fn: '*.quality_distribution_metrics'
+        shared: true
+    picard/variant_valling_metrics:
+        fn: '*.variant_calling_detail_metrics'
         shared: true
     verifybamid/selfsm:
         fn: '*.selfSM'
+        shared: false
     samtools/flagstat:
         fn: '*.flagstat'
         contents: 'in total (QC-passed reads + QC-failed reads)'
@@ -337,10 +352,13 @@ sp:
     happy:
         fn: "*.summary.csv"
         contents: "Type,Filter,TRUTH"
+        shared: false
     vcf_qc_files:
         fn: '*.vcf.QC'
+        shared: false
     somalier_files:
         fn: '*_somalier.samples.tsv'
+        shared: false
 
 # Remove plots from HTML report
 # remove_sections:
@@ -358,6 +376,13 @@ dx_sp:
         picard/QC:
             - '*.hsmetrics.tsv'
             - '*.pertarget_coverage.tsv'
+            - '*.alignment_summary_metrics'
+            - '*.insert_size_metrics'
+            - '*.gc_bias.detail_metrics'
+            - '*.gc_bias.summary_metrics'
+            - '*.variant_calling_detail_metrics'
+            # - '*.quality_by_cycle_metrics'
+            # - '*.quality_distribution_metrics'
         verifybamid/QC:
             - '*.selfSM'
         samtools:
