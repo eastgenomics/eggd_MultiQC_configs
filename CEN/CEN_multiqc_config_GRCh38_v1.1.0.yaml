@@ -58,7 +58,6 @@ log_filesize_limit: 5000000000
 # MultiQC skips a couple of debug messages when searching files as the
 # log can get very verbose otherwise. Re-enable here to help debugging.
 report_readerrors: False # UNDOCUMENTED
-report_imgskips: False   # DEPRECATED
 # Opt-out of remotely checking that you're running the latest version
 no_version_check: False
 
@@ -76,26 +75,14 @@ max_table_rows: 500              # Swap tables for a beeswarm plot above this
 # Overwrite module order displayed in report.
 # See multiqc/utils/config_defaults.yaml for the defaults.
 module_order:
-    - happy:
-        module_tag:
-            - DNA
-    - 'custom_content'
+    - happy
+    - custom_content # contains vcf_qc and somalier (inc. sex check section)
     - verifybamid:
-        info: "detects sample contamination."
-        module_tag:
-            - DNA
-    - picard:
-        module_tag:
-            - DNA
-    - samtools:
-        module_tag:
-            - DNA
-    - fastqc:
-        module_tag:
-            - RNA
-    - bcl2fastq:
-        module_tag:
-            - DNA
+        info: "Detects sample contamination" # Vanilla info text says this tool detects sample swaps. We aren't using it for that purpose, so we override the blurb
+    - picard
+    - samtools
+    - fastqc
+    - bcl2fastq
 
 # Overwrite the defaults of which table columns are visible by default
 table_columns_visible:
@@ -252,11 +239,7 @@ custom_data:
         pconfig:
             id: 'het-hom_table'
             table_title: 'Het-hom'
-            'col1_header': 'Sample'
-            'col2_header': 'mean_het'
-            'col3_header': 'mean_hom'
-            'col4_header': 'het_hom_ratio'
-            'col5_header': 'x_het_hom_ratio'
+            col1_header: 'Sample'
         headers:
             x_het_hom_ratio:
                 title: 'X het:homo ratio'
@@ -282,17 +265,7 @@ custom_data:
         pconfig:
             id: 'somalier_table'
             table_title: 'Sex check'
-            'col1_header': 'sample_id'
-            'col7_header': 'original_pedigree_sex'
-            'col19_header': 'X_depth_mean'
-            'col20_header': 'X_n'
-            'col21_header': 'X_hom_ref'
-            'col22_header': 'X_het'
-            'col23_header': 'X_hom_alt'
-            'col24_header': 'Y_depth_mean'
-            'col25_header': 'Y_n'
-            'col26_header': 'Predicted_Sex'
-            'col27_header': 'Match_Sexes'
+            col1_header: 'sample_id'
         headers:
             sample_id:
                 title: 'Sample ID'
@@ -408,8 +381,3 @@ dx_sp:
             - "*.summary.csv"
         sex_check:
             - "*_mqc.json"
-    secondary:
-        somalier_relate2multiqc:
-            - '*_somalier.samples.tsv'
-        vcfeval_hap.py:
-            - "*.summary.csv"
