@@ -91,7 +91,7 @@ table_columns_visible:
     Picard:
         FOLD_ENRICHMENT: False
 
-# Specify order in which table columns are visible in General Statistics
+# Specify order in which table columns are visible
 table_columns_placement:
     general_stats_table:
         mapped_passed: 950
@@ -136,8 +136,7 @@ table_cond_formatting_colours:
     - warn: '#f0ad4e'
     - fail: '#d9534f'
 
-
-# Set conditional formatting rules for general stats
+# set conditional formatting rules
 table_cond_formatting_rules:
     mqc-generalstats-picard-PCT_TARGET_BASES_20X: # Percentage of target bases at 20x
         pass:                                     # number in name depends on what is set above
