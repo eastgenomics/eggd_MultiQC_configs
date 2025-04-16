@@ -90,8 +90,6 @@ table_columns_visible:
     FastQC: False
     Picard:
         FOLD_ENRICHMENT: False
-    verifyBAMID:
-        CHIPMIX: False
 
 # Specify order in which table columns are visible in General Statistics
 table_columns_placement:
