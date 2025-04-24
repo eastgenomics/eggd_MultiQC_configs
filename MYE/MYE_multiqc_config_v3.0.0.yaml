@@ -157,33 +157,25 @@ table_cond_formatting_colours:
 
 # Set conditional formatting rules
 table_cond_formatting_rules:
-    # Columns in the General Statistics table
     mqc-generalstats-custom_coverage-250x:
         pass:
             - lt: 101
         warn:
             - eq: 90.0
             - lt: 90.0
-    mqc-generalstats-verifybamid-FREEMIX: #verifyBamId Contaminntion column in General Stats
+    verifybamid-FREEMIX: #verifyBamId Contaminntion column in General Stats
         pass:
             - lt: 10
         warn:
             - eq: 10
             - gt: 10
-    mqc-generalstats-picard-summed_median: # Picard Median Insert Size
+    picard_insertsizemetrics-summed_median: # Picard Median Insert Size
         pass:
             - gt: 150
         warn:
             - eq: 150
             - lt: 150
-    # Columns in tables from other modules
-    FREEMIX: #verifyBamId Contamination column in verifybamid
-        pass:
-            - lt: 10
-        warn:
-            - eq: 10
-            - gt: 10
-    FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
+    hsmetrics-FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
         pass:
             - lt: 1.80
         warn:
