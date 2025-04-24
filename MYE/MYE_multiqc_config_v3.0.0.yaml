@@ -101,21 +101,11 @@ max_table_rows: 500              # Swap tables for a beeswarm plot above this
 module_order:
     - 'custom_content'
     - verifybamid:
-        module_tag:
-            - DNA
         info: ""
-    - picard:
-        module_tag:
-            - DNA
-    - samtools:
-        module_tag:
-            - DNA
-    - fastqc:
-        module_tag:
-            - DNA
-    - bcl2fastq:
-        module_tag:
-            - DNA
+    - picard
+    - samtools
+    - fastqc
+    - bcl2fastq
 
 # Overwrite the defaults of which table columns are visible by default
 # in the General Statistics table
