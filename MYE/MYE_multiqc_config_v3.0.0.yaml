@@ -144,7 +144,7 @@ picard_config:
 
 custom_plot_config:
     picard_gcbias_plot:
-        yCeiling: 50
+        y_clipmax: 50
 
 table_cond_formatting_colours:
     - blue: '#337ab7'
