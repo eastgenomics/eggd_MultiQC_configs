@@ -83,7 +83,7 @@ extra_fn_clean_exts:
 log_filesize_limit: 5000000000
 # MultiQC skips a couple of debug messages when searching files as the
 # log can get very verbose otherwise. Re-enable here to help debugging.
-report_readerrors: False
+report_readerrors: 0
 # Opt-out of remotely checking that you're running the latest version
 no_version_check: False
 
