@@ -117,8 +117,6 @@ table_columns_visible:
         300x: False
         500x: False
         1000x: False
-    verifyBAMID:
-        CHIPMIX: False
     Picard:
         PERCENT_DUPLICATION: False
         PCT_TARGET_BASES_100X: False
