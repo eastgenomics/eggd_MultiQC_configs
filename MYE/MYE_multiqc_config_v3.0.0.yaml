@@ -41,6 +41,8 @@ data_dir_name: multiqc_data
 prepend_dirs: False
 # Whether to create the parsed data directory in addition to the report
 make_data_dir: True
+# Remove AI buttons
+no_ai: True
 
 # Cleaning options for sample names. Typically, sample names are detected
 # from an input filename. If any of these strings are found, they and any
