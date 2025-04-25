@@ -336,7 +336,7 @@ dx_sp:
             - '*.hsmetrics.tsv'
             - '*.gc_bias.detail_metrics'
             - '*.insert_size_metrics'
-            - '*.pertarget_coverage.tsv'
+            - '*.variant_calling_detail_metrics'
         verifybamid/QC:
             - '*.selfSM'
         samtools:
