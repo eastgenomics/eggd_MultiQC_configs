@@ -102,6 +102,7 @@ module_order:
     - fastqc
     - picard
     - rna_seqc
+    - interop
 
 table_columns_visible:
     FastQC:
@@ -142,6 +143,10 @@ sp:
       shared: true
     rna_seqc/coverage:
       fn_re: 'meanCoverageNorm_(high|medium|low)\.txt'
+    interop/summary:
+      fn: 'interop_summary.csv'
+    interop/index-summary:
+        fn: 'interop_index_summary.csv'
 
 
 # # Remove plots from HTML report
