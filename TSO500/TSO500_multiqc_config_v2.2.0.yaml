@@ -81,8 +81,7 @@ extra_fn_clean_exts:
 log_filesize_limit: 5000000000
 # MultiQC skips a couple of debug messages when searching files as the
 # log can get very verbose otherwise. Re-enable here to help debugging.
-report_readerrors: False
-report_imgskips: False
+report_readerrors: 0
 # Opt-out of remotely checking that you're running the latest version
 no_version_check: False
 
@@ -94,7 +93,7 @@ no_version_check: False
 plots_force_flat: False          # Try to use only flat image graphs
 plots_force_interactive: False   # Try to use only interactive javascript graphs
 plots_flat_numseries: 200        # If neither of the above, use flat if > this number of datasets
-num_datasets_plot_limit: 100      # If interactive, don't plot on load if > this number of datasets
+plots_number_of_series_to-defer_loading: 100      # If interactive, don't plot on load if > this number of datasets
 max_table_rows: 500              # Swap tables for a beeswarm plot above this
 
 custom_data:
