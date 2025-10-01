@@ -217,8 +217,9 @@ table_cond_formatting_rules:
 # Overwrite module order (in report).
 # See multiqc/utils/config_defaults.yaml for the defaults.
 module_order:
-    - fastqc:
-        path_filters: '*.stats-fastqc.txt'
+    - fastqc
+    - picard
+    - interop
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
@@ -234,6 +235,13 @@ sp:
         fn: 'MetricsOutput_MultiQC_DNA.tsv'
     metricsoutput_rna:
         fn: 'MetricsOutput_MultiQC_RNA.tsv'
+    picard/variant_calling_metrics:
+        fn: '*variantcallingmetrics.variant_calling_detail_metrics'
+        shared: true
+    interop/summary:
+        fn: 'interop_summary.csv'
+    interop/index-summary:
+        fn: 'interop_index_summary.csv'
 
 # # Remove plots from HTML report
 # remove_sections:
@@ -251,3 +259,5 @@ dx_sp:
             - 'MetricsOutput_MultiQC_DNA.tsv'
         metricsoutput_rna:
             - 'MetricsOutput_MultiQC_RNA.tsv'
+        picard/QC:
+            - '*variantcallingmetrics.variant_calling_detail_metrics'
