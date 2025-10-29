@@ -133,6 +133,9 @@ module_order:
     - bcl2fastq:
         module_tag:
             - DNA
+    - interop:
+        module_tag:
+            - DNA
 
 # Overwrite the defaults of which table columns are visible by default
 table_columns_visible:
@@ -415,6 +418,13 @@ sp:
     picard/quality_score_distribution:
         fn: '*.QualDistribution_metrics.txt'
         shared: true
+    picard/variant_calling_metrics:
+        fn: '*.variantcallingmetrics.variant_calling_detail_metrics'
+        shared: true
+    interop/summary:
+        fn: 'interop_summary.csv'
+    interop/index-summary:
+        fn: 'interop_index_summary.csv'
     verifybamid/selfsm:
         fn: '*.selfSM'
     samtools/flagstat:
@@ -452,6 +462,7 @@ dx_sp:
         picard/QC:
             - '*.hsmetrics.tsv'
             - '*.pertarget_coverage.tsv'
+            - '*.variantcallingmetrics.variant_calling_detail_metrics'
         verifybamid/QC:
             - '*.selfSM'
             # - '*.depthSM'
