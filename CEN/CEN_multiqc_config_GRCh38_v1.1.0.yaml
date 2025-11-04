@@ -37,7 +37,7 @@ output_fn_name: multiqc_report.html
 data_dir_name: multiqc_data
 
 # Prepend sample names with their directory. Useful if analysing the
-# sample samples with different parameters.
+# same samples with different parameters.
 prepend_dirs: False
 # Whether to create the parsed data directory in addition to the report
 make_data_dir: True
@@ -87,12 +87,11 @@ extra_fn_clean_exts:
     # - type: regex
     #   pattern: '^Sample_\d+'
 
-# Ignore files larger than this when searcing for logs (bytes)
+# Ignore files larger than this when searching for logs (bytes)
 log_filesize_limit: 5000000000
 # MultiQC skips a couple of debug messages when searching files as the
 # log can get very verbose otherwise. Re-enable here to help debugging.
-report_readerrors: False
-report_imgskips: False
+report_readerrors: 0
 # Opt-out of remotely checking that you're running the latest version
 no_version_check: False
 
@@ -106,79 +105,85 @@ plots_force_interactive: True   # Try to use only interactive javascript graphs
 plots_flat_numseries: 200        # If neither of the above, use flat if > this number of datasets
 num_datasets_plot_limit: 100      # If interactive, don't plot on load if > this number of datasets
 max_table_rows: 500              # Swap tables for a beeswarm plot above this
+no_ai: True
+plots_num_samples_do_not_automatically_load: 100
+
+# Since Sentieon has been absorbed into Picard module, this is required
+# otherwise it will make all sample names "sorted_0" from the command
+# inside the Sentieon output files
+use_filename_as_sample_name:
+    - picard/alignment_metrics
+    - picard/markdups
+    - picard/gcbias
+    - picard/insertsize
+    - picard/pcr_metrics
+    - picard/quality_by_cycle
+    - picard/quality_score_distribution
 
 # Overwrite module order displayed in report.
 # See multiqc/utils/config_defaults.yaml for the defaults.
 module_order:
-    - happy:
-        module_tag:
-            - DNA
-    - 'custom_content'
-    - verifybamid:
-        info: "detects sample contamination."
-        module_tag:
-            - DNA
-    - picard:
-        module_tag:
-            - DNA
-    - sentieon:
-        module_tag:
-            - DNA
-    - samtools:
-        module_tag:
-            - DNA
-    - fastqc:
-        module_tag:
-            - RNA
-    - bcl2fastq:
-        module_tag:
-            - DNA
-    - interop:
-        module_tag:
-            - DNA
+    - happy
+    - custom_content
+    - verifybamid
+    - picard
+    - sentieon
+    - samtools
+    - fastqc
+    - bcl2fastq
+    - interop
+
+# Make columns visible in General Statistics table by default
+general_stats_columns:
+    picard_hsmetrics:
+        columns:
+            MEDIAN_TARGET_COVERAGE:
+                hidden: true
+    samtools:
+        columns:
+            mapped_passed_pct:
+                hidden: false
 
 # Overwrite the defaults of which table columns are visible by default
 table_columns_visible:
     bcl2fastq: False
     FastQC: False
-    Picard:
-        FOLD_ENRICHMENT: False
     verifyBAMID:
         CHIPMIX: False
 
 # Specify order in which table columns are visible in General Statistics
 table_columns_placement:
     general_stats_table:
-        mapped_passed: 950
-        FREEMIX: 960
-        PCT_TARGET_BASES_20X: 970
-        percent_duplicates: 980
-        PCT_PF_READS_ALIGNED: 990
-        summed_median: 1000
+        samtools_flagstat-mapped_passed: 950
+        verifybamid-FREEMIX: 960
+        picard_hsmetrics-PCT_TARGET_BASES_20X: 970
+        picard_alignment_metrics-PCT_PF_READS_ALIGNED: 980
+        picard_insertsizemetrics-summed_median: 990
+        picard_mark_duplicates-PERCENT_DUPLICATION: 1000
     picard_hsmetrics_table: # Specify the order in which table columns are visible in HSmetrics
-        BAIT_DESIGN_EFFICIENCY: 780
-        FOLD_80_BASE_PENALTY: 790
-        FOLD_ENRICHMENT: 800
-        HET_SNP_Q: 810
-        HET_SNP_SENSITIVITY: 820
-        MAX_TARGET_COVERAGE: 830
-        MEAN_BAIT_COVERAGE: 840
-        MEAN_TARGET_COVERAGE: 850
-        MEDIAN_TARGET_COVERAGE: 860
-        NEAR_BAIT_BASES: 870
-        OFF_BAIT_BASES: 880
-        ON_BAIT_BASES: 890
-        ON_BAIT_VS_SELECTED: 900
-        ON_TARGET_BASES: 910
-        PCT_USABLE_BASES_ON_BAIT: 920
-        PCT_USABLE_BASES_ON_TARGET: 930
-        PF_BASES_ALIGNED: 940
-        PF_READS: 950
-        PF_UNIQUE_READS: 960
-        PF_UQ_BASES_ALIGNED: 970
-        PF_UQ_READS_ALIGNED: 980
-        ZERO_CVG_TARGETS_PCT: 990
-        PCT_SELECTED_BASES: 1000
+        hsmetrics-BAIT_DESIGN_EFFICIENCY: 780
+        hsmetrics-FOLD_80_BASE_PENALTY: 790
+        hsmetrics-FOLD_ENRICHMENT: 800
+        hsmetrics-HET_SNP_Q: 810
+        hsmetrics-HET_SNP_SENSITIVITY: 820
+        hsmetrics-MAX_TARGET_COVERAGE: 830
+        hsmetrics-MEAN_BAIT_COVERAGE: 840
+        hsmetrics-MEAN_TARGET_COVERAGE: 850
+        hsmetrics-MEDIAN_TARGET_COVERAGE: 860
+        hsmetrics-NEAR_BAIT_BASES: 870
+        hsmetrics-OFF_BAIT_BASES: 880
+        hsmetrics-ON_BAIT_BASES: 890
+        hsmetrics-ON_BAIT_VS_SELECTED: 900
+        hsmetrics-ON_TARGET_BASES: 910
+        hsmetrics-PCT_USABLE_BASES_ON_BAIT: 920
+        hsmetrics-PCT_USABLE_BASES_ON_TARGET: 930
+        hsmetrics-PF_BASES_ALIGNED: 940
+        hsmetrics-PF_READS: 950
+        hsmetrics-PF_UNIQUE_READS: 960
+        hsmetrics-PF_UQ_BASES_ALIGNED: 970
+        hsmetrics-PF_UQ_READS_ALIGNED: 980
+        hsmetrics-ZERO_CVG_TARGETS_PCT: 990
+        hsmetrics-PCT_SELECTED_BASES: 1000
 
 # Set picard configs: TARGET BASES COVERAGE
 picard_config:
@@ -195,7 +200,7 @@ table_cond_formatting_colours:
 
 # Set conditional formatting rules for general stats
 table_cond_formatting_rules:
-    mqc-generalstats-picard-PCT_TARGET_BASES_20X: # Percentage of target bases at 20x
+    picard_hsmetrics-picard_target_bases_20X:     # Percentage of target bases at 20x
         pass:                                     # number in name depends on what is set above
             - lt: 101
         warn:
@@ -204,13 +209,13 @@ table_cond_formatting_rules:
         fail:
             - eq: 99.0
             - lt: 99.0
-    mqc-generalstats-verifybamid-FREEMIX: #verifyBamId Contamination column in General Stats
+    verifybamid-FREEMIX: # verifyBamId Contamination column in all tables
         pass:
-            - lt: 1
+            - lt: 1.0
         fail:
-            - eq: 1
-            - gt: 1
-    mqc-generalstats-sentieon-summed_median: # Sentieon Insert Size column in General Stats
+            - eq: 1.0
+            - gt: 1.0
+    picard_insertsizemetrics-summed_median: # Sentieon Insert Size column
         pass:
             - gt: 175
             - eq: 175
@@ -223,18 +228,12 @@ table_cond_formatting_rules:
         fail:
             - lt: 0.455
             - gt: 0.486
-    FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
+    hsmetrics-FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
         pass:
             - lt: 1.30
         warn:
             - eq: 1.30
             - gt: 1.30
-    FREEMIX: #verifyBamId Contamination column in verifybamid
-        pass:
-            - lt: 1
-        fail:
-            - eq: 1
-            - gt: 1
     METRIC_Recall_indel: # Happy indel Recall outputs
         pass:
             - gt: 0.800
@@ -272,7 +271,8 @@ table_cond_formatting_rules:
     original_pedigree_sex: # Somalier Reported sex column
         warn:
             - s_eq: 'none'
-    FOLD_ENRICHMENT: # Picard HSMetrics fold enrichment column
+    # We need both for General Stats and HSMetrics table as neither threshold both tables on their own, and just specifying FOLD_ENRICHMENT doesn't work either
+    picard_hsmetrics-FOLD_ENRICHMENT:
         pass:
             - gt: 1400
         warn:
@@ -281,6 +281,27 @@ table_cond_formatting_rules:
         fail:
             - lt: 1350
             - eq: 1350
+    hsmetrics-FOLD_ENRICHMENT:
+        pass:
+            - gt: 1400
+        warn:
+            - eq: 1400
+            - lt: 1400
+        fail:
+            - lt: 1350
+            - eq: 1350
+    supplementary_passed:
+        pass:
+            - lt: 650000
+        warn:
+            - eq: 650000
+            - gt: 650000
+    with_mate_mapped_to_a_different_chr_passed:
+        pass:
+            - lt: 1320000
+        warn:
+            - eq: 1320000
+            - gt: 1320000
 
 # Add code to include data from custom QC data files
 custom_data:
@@ -291,12 +312,6 @@ custom_data:
         plot_type: 'table'
         pconfig:
             id: 'het-hom_table'
-            table_title: 'Het-hom'
-            'col1_header': 'Sample'
-            'col2_header': 'mean_het'
-            'col3_header': 'mean_hom'
-            'col4_header': 'het_hom_ratio'
-            'col5_header': 'x_het_hom_ratio'
         headers:
             x_het_hom_ratio:
                 title: 'X het:homo ratio'
@@ -321,24 +336,18 @@ custom_data:
         plot_type: 'table'
         pconfig:
             id: 'somalier_table'
-            table_title: 'Sex check'
-            'col1_header': 'sample_id'
-            'col7_header': 'original_pedigree_sex'
-            'col19_header': 'X_depth_mean'
-            'col20_header': 'X_n'
-            'col21_header': 'X_hom_ref'
-            'col22_header': 'X_het'
-            'col23_header': 'X_hom_alt'
-            'col24_header': 'Y_depth_mean'
-            'col25_header': 'Y_n'
-            'col26_header': 'Predicted_Sex'
-            'col27_header': 'Match_Sexes'
         headers:
             sample_id:
                 title: 'Sample ID'
+            Match_Sexes:
+                title: 'Matching sex'
+                description: 'Whether reported and predicted sex of sample match'
             original_pedigree_sex:
                 title: 'Reported sex'
                 description: 'Expected sex reported from filename'
+            Predicted_Sex:
+                title: 'Predicted sex'
+                description: 'Predicted sex based on thresholds on X_het'
             X_depth_mean:
                 title: 'X_depth_mean'
                 description: 'Mean depth on X chromosome'
@@ -365,17 +374,12 @@ custom_data:
                 title: 'Y_n'
                 description: 'Total variant calls on Y chromosome'
                 format:  '{:,.0f}'
-            Predicted_Sex:
-                title: 'Predicted sex'
-                description: 'Predicted sex based on thresholds on X_het'
-            Match_Sexes:
-                title: 'Matching sex'
-                description: 'Whether reported and predicted sex of sample match'
+
 
 # Add a fixed scale of the Y-axis on the Picard GC bias plot
 custom_plot_config:
-    sentieon_gcbias_plot:
-        yCeiling: 100
+    picard_gcbias_plot:
+        y_clipmax: 100
 
 custom_table_header_config:
     picard_hsmetrics_table:
@@ -386,6 +390,8 @@ custom_table_header_config:
     general_stats_table:
         PCT_TARGET_BASES_20X:
             format: "{:,.2f}"
+        FOLD_ENRICHMENT:
+            format: "{:,.2f}"
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
@@ -394,16 +400,16 @@ sp:
         fn: 'Stats.json'
     fastqc/data:
         fn: '*.stats-fastqc.txt'
-    sentieon/alignment_metrics:
+    picard/alignment_metrics:
         fn: '*.AlignmentStat_metrics.txt'
         shared: true
-    sentieon/markdups:
+    picard/markdups:
         fn: '*.Duplication_metrics.txt'
         shared: true
-    sentieon/gcbias:
+    picard/gcbias:
         fn: '*.GCBias_metrics.txt'
         shared: true
-    sentieon/insertsize:
+    picard/insertsize:
         fn: '*.InsertSize_metrics.txt'
         shared: true
     picard/hsmetrics:
@@ -452,20 +458,18 @@ dx_sp:
     primary:
         fastqc:
             - '*.stats-fastqc.txt'
-        sentieon/sample:
+        picard/QC:
             - '*.AlignmentStat_metrics.txt'
             - '*.Duplication_metrics.txt'
             - '*.GCBias_metrics.txt'
             - '*.InsertSize_metrics.txt'
-            # - '*.MeanQualityByCycle_metrics.txt'
-            # - '*.QualDistribution_metrics.txt'
-        picard/QC:
+            - '*.MeanQualityByCycle_metrics.txt'
+            - '*.QualDistribution_metrics.txt'
             - '*.hsmetrics.tsv'
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
         verifybamid/QC:
             - '*.selfSM'
-            # - '*.depthSM'
         samtools:
             - '*.flagstat'
         vcf_qc:
