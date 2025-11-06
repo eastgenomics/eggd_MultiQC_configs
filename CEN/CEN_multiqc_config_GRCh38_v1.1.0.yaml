@@ -376,10 +376,12 @@ custom_data:
                 format:  '{:,.0f}'
 
 
-# Add a fixed scale of the Y-axis on the Picard GC bias plot
+
 custom_plot_config:
-    picard_gcbias_plot:
+    picard_gcbias_plot: # Add a fixed scale of the Y-axis on the Picard GC bias plot
         y_clipmax: 100
+    samtools-flagstat-dp: # Overwrite the defaults of which samtools-flagstat is presented as violin plot
+        no_violin: True
 
 custom_table_header_config:
     picard_hsmetrics_table:
