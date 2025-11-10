@@ -150,9 +150,9 @@ table_columns_placement:
         samtools_flagstat-mapped_passed: 950
         verifybamid-FREEMIX: 960
         picard_hsmetrics-picard_target_bases_20X: 970
-        picard_insertsizemetrics-summed_median: 980
-        picard_mark_duplicates-PERCENT_DUPLICATION: 990
-        picard_hsmetrics-FOLD_ENRICHMENT: 1000
+        picard_hsmetrics-FOLD_ENRICHMENT: 980
+        picard_insertsizemetrics-summed_median: 990
+        picard_mark_duplicates-PERCENT_DUPLICATION: 1000
     picard_hsmetrics_table: # Specify the order in which table columns are visible in HSmetrics
         hsmetrics-BAIT_DESIGN_EFFICIENCY: 780
         hsmetrics-FOLD_80_BASE_PENALTY: 790
