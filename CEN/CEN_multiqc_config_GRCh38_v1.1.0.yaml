@@ -133,16 +133,10 @@ module_order:
     - bcl2fastq
     - interop
 
-# Make columns visible in General Statistics table by default
-general_stats_columns:
+# Make Picard_HSMetrics first in the picard subsection
+report_section_order:
     picard_hsmetrics:
-        columns:
-            MEDIAN_TARGET_COVERAGE:
-                hidden: true
-    samtools:
-        columns:
-            mapped_passed_pct:
-                hidden: false
+        order: -1000
 
 # Overwrite the defaults of which table columns are visible by default
 table_columns_visible:
@@ -156,10 +150,10 @@ table_columns_placement:
     general_stats_table:
         samtools_flagstat-mapped_passed: 950
         verifybamid-FREEMIX: 960
-        picard_hsmetrics-PCT_TARGET_BASES_20X: 970
-        picard_alignment_metrics-PCT_PF_READS_ALIGNED: 980
-        picard_insertsizemetrics-summed_median: 990
-        picard_mark_duplicates-PERCENT_DUPLICATION: 1000
+        picard_hsmetrics-picard_target_bases_20X: 970
+        picard_insertsizemetrics-summed_median: 980
+        picard_mark_duplicates-PERCENT_DUPLICATION: 990
+        picard_hsmetrics-FOLD_ENRICHMENT: 1000
     picard_hsmetrics_table: # Specify the order in which table columns are visible in HSmetrics
         hsmetrics-BAIT_DESIGN_EFFICIENCY: 780
         hsmetrics-FOLD_80_BASE_PENALTY: 790
@@ -184,6 +178,13 @@ table_columns_placement:
         hsmetrics-PF_UQ_READS_ALIGNED: 980
         hsmetrics-ZERO_CVG_TARGETS_PCT: 990
         hsmetrics-PCT_SELECTED_BASES: 1000
+    samtools-flagstat-dp:
+        flagstat_total: 950
+        total_passed: 960
+        mapped_passed: 970
+        supplementary_passed: 980
+        with_mate_mapped_to_a_different_chr_passed: 990
+        duplicates_passed: 1000
 
 # Set picard configs: TARGET BASES COVERAGE
 picard_config:
@@ -302,6 +303,9 @@ table_cond_formatting_rules:
         warn:
             - eq: 1320000
             - gt: 1320000
+    samtools_flagstat-mapped_passed:
+        warn:
+            - lt: 20.0
 
 # Add code to include data from custom QC data files
 custom_data:
@@ -375,8 +379,6 @@ custom_data:
                 description: 'Total variant calls on Y chromosome'
                 format:  '{:,.0f}'
 
-
-
 custom_plot_config:
     picard_gcbias_plot: # Add a fixed scale of the Y-axis on the Picard GC bias plot
         y_clipmax: 100
@@ -394,6 +396,12 @@ custom_table_header_config:
             format: "{:,.2f}"
         FOLD_ENRICHMENT:
             format: "{:,.2f}"
+        picard_hsmetrics-MEDIAN_TARGET_COVERAGE:
+            hidden: true
+        picard_variantcallingmetrics-DBSNP_TITV:
+            hidden: true
+        picard_variantcallingmetrics-NOVEL_TITV:
+            hidden: true
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
@@ -419,12 +427,6 @@ sp:
         shared: true
     picard/pcr_metrics:
         fn: '*.pertarget_coverage.tsv'
-        shared: true
-    picard/quality_by_cycle:
-        fn: '*.MeanQualityByCycle_metrics.txt'
-        shared: true
-    picard/quality_score_distribution:
-        fn: '*.QualDistribution_metrics.txt'
         shared: true
     picard/variant_calling_metrics:
         fn: '*.variantcallingmetrics.variant_calling_detail_metrics'
@@ -465,8 +467,6 @@ dx_sp:
             - '*.Duplication_metrics.txt'
             - '*.GCBias_metrics.txt'
             - '*.InsertSize_metrics.txt'
-            - '*.MeanQualityByCycle_metrics.txt'
-            - '*.QualDistribution_metrics.txt'
             - '*.hsmetrics.tsv'
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
