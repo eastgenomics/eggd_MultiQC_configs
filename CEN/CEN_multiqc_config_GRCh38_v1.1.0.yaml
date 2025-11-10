@@ -127,7 +127,6 @@ module_order:
     - custom_content
     - verifybamid
     - picard
-    - sentieon
     - samtools
     - fastqc
     - bcl2fastq
@@ -293,16 +292,16 @@ table_cond_formatting_rules:
             - eq: 1350
     supplementary_passed:
         pass:
-            - lt: 650000
+            - lt: 0.650000
         warn:
-            - eq: 650000
-            - gt: 650000
+            - eq: 0.650000
+            - gt: 0.650000
     with_mate_mapped_to_a_different_chr_passed:
         pass:
-            - lt: 1320000
+            - lt: 1.320000
         warn:
-            - eq: 1320000
-            - gt: 1320000
+            - eq: 1.320000
+            - gt: 1.320000
     samtools_flagstat-mapped_passed:
         warn:
             - lt: 20.0
