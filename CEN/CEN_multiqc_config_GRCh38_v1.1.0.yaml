@@ -136,6 +136,8 @@ module_order:
 report_section_order:
     picard_hsmetrics:
         order: -1000
+    samplesheet_samplename_patterns:
+        order: 10
 
 # Overwrite the defaults of which table columns are visible by default
 table_columns_visible:
@@ -147,12 +149,12 @@ table_columns_visible:
 # Specify order in which table columns are visible in General Statistics
 table_columns_placement:
     general_stats_table:
-        samtools_flagstat-mapped_passed: 950
-        verifybamid-FREEMIX: 960
-        picard_hsmetrics-picard_target_bases_20X: 970
-        picard_hsmetrics-FOLD_ENRICHMENT: 980
-        picard_mark_duplicates-PERCENT_DUPLICATION: 990
-        picard_insertsizemetrics-summed_median: 1000
+        samtools_flagstat-mapped_passed: 940
+        verifybamid-FREEMIX: 950
+        picard_hsmetrics-picard_target_bases_20X: 960
+        picard_hsmetrics-FOLD_ENRICHMENT: 970
+        picard_mark_duplicates-PERCENT_DUPLICATION: 980
+        picard_insertsizemetrics-summed_median: 990
     picard_hsmetrics_table: # Specify the order in which table columns are visible in HSmetrics
         hsmetrics-BAIT_DESIGN_EFFICIENCY: 780
         hsmetrics-FOLD_80_BASE_PENALTY: 790
@@ -377,6 +379,22 @@ custom_data:
                 title: 'Y_n'
                 description: 'Total variant calls on Y chromosome'
                 format:  '{:,.0f}'
+    samplesheet_wells:
+        file_format: 'tsv'
+        plot_type: 'generalstats'
+        headers:
+            well_column:
+                title: 'well column'
+            well_row:
+                title: 'well row'
+    samplesheet_samplename_patterns:
+        file_format: 'tsv'
+        plot_type: 'table'
+        headers:
+            well:
+                title: 'Well column / row'
+            samplenames:
+                title: 'Sample name patterns'
 
 custom_plot_config:
     picard_gcbias_plot: # Add a fixed scale of the Y-axis on the Picard GC bias plot
@@ -391,10 +409,11 @@ custom_table_header_config:
         FOLD_ENRICHMENT:
             format: "{:,.2f}"
     general_stats_table:
-        PCT_TARGET_BASES_20X:
+        picard_hsmetrics-picard_target_bases_20X:
             format: "{:,.2f}"
-        FOLD_ENRICHMENT:
+        picard_hsmetrics-FOLD_ENRICHMENT:
             format: "{:,.2f}"
+            suffix: ""
         picard_hsmetrics-MEDIAN_TARGET_COVERAGE:
             hidden: true
         picard_variantcallingmetrics-DBSNP_TITV:
@@ -447,6 +466,10 @@ sp:
         fn: '*.vcf.QC'
     somalier_files:
         fn: '*_somalier.samples.tsv'
+    samplesheet_wells:
+        fn: 'samplesheet_wells.tsv'
+    samplesheet_samplename_patterns:
+        fn: 'samplesheet_well_samplename_patterns.tsv'
 
 # Remove plots from HTML report
 # remove_sections:
