@@ -201,7 +201,7 @@ table_cond_formatting_rules:
         fail:
             - eq: 95.0
             - lt: 95.0
-    verifybamid-FREEMIX: #verifyBamId Contamination column in General Stats
+    verifybamid-FREEMIX: #verifyBamId Contamination column in all tables
         pass:
             - lt: 1
         fail:
