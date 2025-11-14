@@ -201,7 +201,7 @@ table_cond_formatting_rules:
         fail:
             - eq: 99.0
             - lt: 99.0
-    mqc-generalstats-verifybamid-FREEMIX: #verifyBamId Contamination column in General Stats
+    mqc-generalstats-verifybamid-FREEMIX: #verifyBamId Contamination column in all tables
         pass:
             - lt: 1
         fail:
