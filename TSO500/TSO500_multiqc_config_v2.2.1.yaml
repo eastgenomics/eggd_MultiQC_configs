@@ -221,6 +221,17 @@ module_order:
     - picard
     - interop
 
+
+custom_table_header_config:
+  general_stats_table:
+      picard_hsmetrics-MEDIAN_TARGET_COVERAGE:
+          hidden: true
+      picard_variantcallingmetrics-DBSNP_TITV:
+          hidden: true
+      picard_variantcallingmetrics-NOVEL_TITV:
+          hidden: true
+
+
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
 sp:
