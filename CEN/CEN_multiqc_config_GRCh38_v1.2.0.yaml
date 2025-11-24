@@ -307,7 +307,7 @@ table_cond_formatting_rules:
     samtools_flagstat-mapped_passed:
         warn:
             - lt: 20.0
-    samtools-flagstat-dp_table-mapped_passed:
+    mapped_passed:
         warn:
             - lt: 20.0
 
