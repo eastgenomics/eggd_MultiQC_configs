@@ -414,6 +414,11 @@ custom_table_header_config:
             hidden: true
         picard_variantcallingmetrics-NOVEL_TITV:
             hidden: true
+    samtools-flagstat-dp:
+            supplementary_passed:
+                format: "{:,.3f}"
+            with_mate_mapped_to_a_different_chr_passed:
+                format: "{:,.3f}"
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
