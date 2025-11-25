@@ -305,9 +305,15 @@ table_cond_formatting_rules:
             - eq: 1.320000
             - gt: 1.320000
     samtools_flagstat-mapped_passed:
+        pass:
+            - eq: 20.0
+            - gt: 20.0
         warn:
             - lt: 20.0
     mapped_passed:
+        pass:
+            - eq: 20.0
+            - gt: 20.0
         warn:
             - lt: 20.0
 
