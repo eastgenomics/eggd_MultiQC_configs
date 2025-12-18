@@ -378,9 +378,9 @@ custom_data:
         plot_type: 'generalstats'
         headers:
             well_column:
-                title: 'well column'
+                title: 'Well column'
             well_row:
-                title: 'well row'
+                title: 'Well row'
     samplesheet_samplename_patterns:
         file_format: 'tsv'
         plot_type: 'table'
