@@ -220,7 +220,7 @@ table_cond_formatting_rules:
         fail:
             - lt: 0.437
             - gt: 0.455
-    FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
+    hsmetrics-FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
         pass:
             - lt: 1.60
         warn:
@@ -378,9 +378,9 @@ custom_data:
         plot_type: 'generalstats'
         headers:
             well_column:
-                title: 'well column'
+                title: 'Well column'
             well_row:
-                title: 'well row'
+                title: 'Well row'
     samplesheet_samplename_patterns:
         file_format: 'tsv'
         plot_type: 'table'
