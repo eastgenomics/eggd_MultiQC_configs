@@ -275,6 +275,10 @@ sp:
         fn: 'interop_summary.csv'
     interop/index-summary:
         fn: 'interop_index_summary.csv'
+    samplesheet_wells:
+        fn: 'samplesheet_wells.tsv'
+    samplesheet_samplename_patterns:
+        fn: 'samplesheet_well_samplename_patterns.tsv'
 
 # Remove plots from HTML report
 remove_sections:
