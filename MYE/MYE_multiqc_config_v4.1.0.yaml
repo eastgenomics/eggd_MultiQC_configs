@@ -37,7 +37,7 @@ output_fn_name: multiqc_report.html
 data_dir_name: multiqc_data
 
 # Prepend sample names with their directory. Useful if analysing the
-# sample samples with different parameters.
+# same samples with different parameters.
 prepend_dirs: False
 # Whether to create the parsed data directory in addition to the report
 make_data_dir: True
@@ -77,12 +77,11 @@ extra_fn_clean_exts:
     - type: remove
       pattern: '.QualDistribution_metrics'
 
-# Ignore files larger than this when searcing for logs (bytes)
+# Ignore files larger than this when searching for logs (bytes)
 log_filesize_limit: 5000000000
 # MultiQC skips a couple of debug messages when searching files as the
 # log can get very verbose otherwise. Re-enable here to help debugging.
-report_readerrors: False
-report_imgskips: False
+report_readerrors: 0
 # Opt-out of remotely checking that you're running the latest version
 no_version_check: False
 
@@ -96,27 +95,18 @@ plots_force_interactive: True   # Try to use only interactive javascript graphs
 plots_flat_numseries: 200        # If neither of the above, use flat if > this number of datasets
 num_datasets_plot_limit: 100      # If interactive, don't plot on load if > this number of datasets
 max_table_rows: 500              # Swap tables for a beeswarm plot above this
+no_ai: True
+plots_num_samples_do_not_automatically_load: 100
 
 # Overwrite module order (in report).
 # See multiqc/utils/config_defaults.yaml for the defaults.
 module_order:
     - 'custom_content'
-    - verifybamid:
-        module_tag:
-            - DNA
-        info: ""
-    - picard:
-        module_tag:
-            - DNA
-    - samtools:
-        module_tag:
-            - DNA
-    - fastqc:
-        module_tag:
-            - DNA
-    - bcl2fastq:
-        module_tag:
-            - DNA
+    - verifybamid
+    - picard
+    - samtools
+    - fastqc
+    - bcl2fastq
 
 # Overwrite the defaults of which table columns are visible by default
 # in the General Statistics table
