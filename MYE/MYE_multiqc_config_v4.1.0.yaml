@@ -271,6 +271,10 @@ sp:
         fn: 'custom_coverage.csv'
     bcl2fastq:
         fn: 'Stats.json'
+    interop/summary:
+        fn: 'interop_summary.csv'
+    interop/index-summary:
+        fn: 'interop_index_summary.csv'
 
 # Remove plots from HTML report
 remove_sections:
