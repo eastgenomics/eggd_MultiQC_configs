@@ -258,6 +258,8 @@ sp:
     picard/quality_score_distribution:
         fn: '*.quality_distribution_metrics'
         shared: true
+    picard/variant_calling_metrics:
+        fn: '*.variantcallingmetrics.variant_calling_detail_metrics'
     verifybamid/selfsm:
         fn: '*.selfSM'
     samtools/flagstat:
