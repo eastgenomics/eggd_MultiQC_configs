@@ -114,6 +114,7 @@ use_filename_as_sample_name:
 # See multiqc/utils/config_defaults.yaml for the defaults.
 module_order:
     - 'custom_content'
+    - sompy
     - verifybamid
     - picard
     - samtools
