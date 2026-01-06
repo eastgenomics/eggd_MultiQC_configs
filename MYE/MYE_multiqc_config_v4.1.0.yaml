@@ -98,6 +98,18 @@ max_table_rows: 500              # Swap tables for a beeswarm plot above this
 no_ai: True
 plots_num_samples_do_not_automatically_load: 100
 
+# Since Sentieon has been absorbed into Picard module, this is required
+# otherwise it will make all sample names "sorted_0" from the command
+# inside the Sentieon output files
+use_filename_as_sample_name:
+    - picard/alignment_metrics
+    - picard/markdups
+    - picard/gcbias
+    - picard/insertsize
+    - picard/pcr_metrics
+    - picard/quality_by_cycle
+    - picard/quality_score_distribution
+
 # Overwrite module order (in report).
 # See multiqc/utils/config_defaults.yaml for the defaults.
 module_order:
@@ -239,6 +251,9 @@ sp:
         fn: '*.stats-fastqc.txt'
     picard/alignment_metrics:
         fn: '*.alignment_summary_metrics'
+        shared: true
+    picard/markdups:
+        fn: '*.Duplication_metrics.txt'
         shared: true
     picard/insertsize:
         fn: '*.insert_size_metrics'
