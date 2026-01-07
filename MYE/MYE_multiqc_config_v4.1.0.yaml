@@ -105,7 +105,6 @@ use_filename_as_sample_name:
     - picard/alignment_metrics
     - picard/markdups
     - picard/gcbias
-    - picard/insertsize
     - picard/pcr_metrics
     - picard/quality_by_cycle
     - picard/quality_score_distribution
@@ -120,6 +119,7 @@ module_order:
     - samtools
     - fastqc
     - bcl2fastq
+    - interop
 
 # Overwrite the defaults of which table columns are visible by default
 # in the General Statistics table
@@ -244,6 +244,22 @@ custom_data:
                 max: 100
                 min: 0
                 suffix: '%'
+    samplesheet_wells:
+        file_format: 'tsv'
+        plot_type: 'generalstats'
+        headers:
+            well_column:
+                title: 'well column'
+            well_row:
+                title: 'well row'
+    samplesheet_samplename_patterns:
+        file_format: 'tsv'
+        plot_type: 'table'
+        headers:
+            well:
+                title: 'Well column / row'
+            samplenames:
+                title: 'Sample name patterns'
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
