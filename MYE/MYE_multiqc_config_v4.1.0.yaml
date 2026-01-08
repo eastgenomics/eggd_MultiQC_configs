@@ -37,7 +37,7 @@ output_fn_name: multiqc_report.html
 data_dir_name: multiqc_data
 
 # Prepend sample names with their directory. Useful if analysing the
-# sample samples with different parameters.
+# same samples with different parameters.
 prepend_dirs: False
 # Whether to create the parsed data directory in addition to the report
 make_data_dir: True
@@ -77,12 +77,11 @@ extra_fn_clean_exts:
     - type: remove
       pattern: '.QualDistribution_metrics'
 
-# Ignore files larger than this when searcing for logs (bytes)
+# Ignore files larger than this when searching for logs (bytes)
 log_filesize_limit: 5000000000
 # MultiQC skips a couple of debug messages when searching files as the
 # log can get very verbose otherwise. Re-enable here to help debugging.
-report_readerrors: False
-report_imgskips: False
+report_readerrors: 0
 # Opt-out of remotely checking that you're running the latest version
 no_version_check: False
 
@@ -96,27 +95,44 @@ plots_force_interactive: True   # Try to use only interactive javascript graphs
 plots_flat_numseries: 200        # If neither of the above, use flat if > this number of datasets
 num_datasets_plot_limit: 100      # If interactive, don't plot on load if > this number of datasets
 max_table_rows: 500              # Swap tables for a beeswarm plot above this
+no_ai: True
+plots_num_samples_do_not_automatically_load: 100
+
+# Since Sentieon has been absorbed into Picard module, this is required
+# otherwise it will make all sample names "sorted_0" from the command
+# inside the Sentieon output files
+use_filename_as_sample_name:
+    - picard/alignment_metrics
+    - picard/markdups
+    - picard/gcbias
+    - picard/pcr_metrics
+    - picard/quality_by_cycle
+    - picard/quality_score_distribution
 
 # Overwrite module order (in report).
 # See multiqc/utils/config_defaults.yaml for the defaults.
 module_order:
     - 'custom_content'
+    - sompy
     - verifybamid:
-        module_tag:
-            - DNA
-        info: ""
-    - picard:
-        module_tag:
-            - DNA
-    - samtools:
-        module_tag:
-            - DNA
-    - fastqc:
-        module_tag:
-            - DNA
-    - bcl2fastq:
-        module_tag:
-            - DNA
+        #Remove the extra description for verifyBAMID
+        extra: ""
+    - picard
+    - samtools
+    - fastqc
+    - bcl2fastq
+    - interop
+
+# Make the samplesheet_samplename_patterns subsection
+report_section_order:
+    general_stats:
+        order: 10000
+    sompy:
+        order: 9990
+    sex_check:
+        order: 9980
+    samplesheet_samplename_patterns:
+        order: 10
 
 # Overwrite the defaults of which table columns are visible by default
 # in the General Statistics table
@@ -155,7 +171,35 @@ picard_config:
 
 custom_plot_config:
     picard_gcbias_plot:
-        yCeiling: 50
+        yCeiling: 5000
+    samtools-flagstat-table:
+        no_violin: True
+    samtools-flagstat-pct-table:
+        no_violin: True
+
+custom_table_header_config:
+    general_stats_table:
+        custom_content_custom_coverage-500x:
+            hidden: True
+        custom_content_custom_coverage-1000x:
+            hidden: True
+        custom_content_samplesheet_wells-well_column:
+            hidden: True
+        custom_content_samplesheet_wells-well_row:
+            hidden: True
+        picard_hsmetrics-FOLD_ENRICHMENT:
+            hidden: True
+        picard_hsmetrics-MEDIAN_TARGET_COVERAGE:
+            hidden: True
+        picard_hsmetrics-picard_target_bases_100X:
+            hidden: True
+        picard_variantcallingmetrics-DBSNP_TITV:
+            hidden: True
+        picard_variantcallingmetrics-NOVEL_TITV:
+            hidden: True
+    picard_variantcallingmetrics_table:
+        variantcallingmetrics-HET_HOMVAR_RATIO:
+            hidden: True
 
 table_cond_formatting_colours:
     - blue: '#337ab7'
@@ -167,32 +211,25 @@ table_cond_formatting_colours:
 # Set conditional formatting rules
 table_cond_formatting_rules:
     # Columns in the General Statistics table
-    mqc-generalstats-custom_coverage-250x:
+    custom_content_custom_coverage-250x:
         pass:
             - lt: 101
         warn:
             - eq: 90.0
             - lt: 90.0
-    mqc-generalstats-verifybamid-FREEMIX: #verifyBamId Contaminntion column in General Stats
+    verifybamid-FREEMIX: #verifyBamId Contaminntion column in General Stats
         pass:
             - lt: 10
         warn:
             - eq: 10
             - gt: 10
-    mqc-generalstats-picard-summed_median: # Picard Median Insert Size
+    picard_insertsizemetrics-summed_median: # Picard Median Insert Size
         pass:
             - gt: 150
         warn:
             - eq: 150
             - lt: 150
-    # Columns in tables from other modules
-    FREEMIX: #verifyBamId Contamination column in verifybamid
-        pass:
-            - lt: 10
-        warn:
-            - eq: 10
-            - gt: 10
-    FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
+    hsmetrics-FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
         pass:
             - lt: 1.80
         warn:
@@ -241,6 +278,22 @@ custom_data:
                 max: 100
                 min: 0
                 suffix: '%'
+    samplesheet_wells:
+        file_format: 'tsv'
+        plot_type: 'generalstats'
+        headers:
+            well_column:
+                title: 'well column'
+            well_row:
+                title: 'well row'
+    samplesheet_samplename_patterns:
+        file_format: 'tsv'
+        plot_type: 'table'
+        headers:
+            well:
+                title: 'Well column / row'
+            samplenames:
+                title: 'Sample name patterns'
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
@@ -249,6 +302,9 @@ sp:
         fn: '*.stats-fastqc.txt'
     picard/alignment_metrics:
         fn: '*.alignment_summary_metrics'
+        shared: true
+    picard/markdups:
+        fn: '*.Duplication_metrics.txt'
         shared: true
     picard/insertsize:
         fn: '*.insert_size_metrics'
@@ -268,6 +324,8 @@ sp:
     picard/quality_score_distribution:
         fn: '*.quality_distribution_metrics'
         shared: true
+    picard/variant_calling_metrics:
+        fn: '*.variantcallingmetrics.variant_calling_detail_metrics'
     verifybamid/selfsm:
         fn: '*.selfSM'
     samtools/flagstat:
@@ -279,6 +337,14 @@ sp:
         fn: 'custom_coverage.csv'
     bcl2fastq:
         fn: 'Stats.json'
+    interop/summary:
+        fn: 'interop_summary.csv'
+    interop/index-summary:
+        fn: 'interop_index_summary.csv'
+    samplesheet_wells:
+        fn: 'samplesheet_wells.tsv'
+    samplesheet_samplename_patterns:
+        fn: 'samplesheet_well_samplename_patterns.tsv'
 
 # Remove plots from HTML report
 remove_sections:
@@ -301,6 +367,7 @@ dx_sp:
             - '*.gc_bias.detail_metrics'
             - '*.insert_size_metrics'
             - '*.pertarget_coverage.tsv'
+            - '*.variantcallingmetrics.variant_calling_detail_metrics'
         verifybamid/QC:
             - '*.selfSM'
         samtools:
