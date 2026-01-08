@@ -114,7 +114,9 @@ use_filename_as_sample_name:
 module_order:
     - 'custom_content'
     - sompy
-    - verifybamid
+    - verifybamid:
+        #Remove the extra description for verifyBAMID
+        extra: ""
     - picard
     - samtools
     - fastqc
@@ -169,7 +171,35 @@ picard_config:
 
 custom_plot_config:
     picard_gcbias_plot:
-        yCeiling: 50
+        yCeiling: 5000
+    samtools-flagstat-table:
+        no_violin: True
+    samtools-flagstat-pct-table:
+        no_violin: True
+
+custom_table_header_config:
+    general_stats_table:
+        custom_content_custom_coverage-500x:
+            hidden: True
+        custom_content_custom_coverage-1000x:
+            hidden: True
+        custom_content_samplesheet_wells-well_column:
+            hidden: True
+        custom_content_samplesheet_wells-well_row:
+            hidden: True
+        picard_hsmetrics-FOLD_ENRICHMENT:
+            hidden: True
+        picard_hsmetrics-MEDIAN_TARGET_COVERAGE:
+            hidden: True
+        picard_hsmetrics-picard_target_bases_100X:
+            hidden: True
+        picard_variantcallingmetrics-DBSNP_TITV:
+            hidden: True
+        picard_variantcallingmetrics-NOVEL_TITV:
+            hidden: True
+    picard_variantcallingmetrics_table:
+        variantcallingmetrics-HET_HOMVAR_RATIO:
+            hidden: True
 
 table_cond_formatting_colours:
     - blue: '#337ab7'
