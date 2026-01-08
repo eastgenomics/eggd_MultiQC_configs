@@ -125,14 +125,14 @@ module_order:
 
 # Make the samplesheet_samplename_patterns subsection
 report_section_order:
-    samplesheet_samplename_patterns:
-        order: 10
     general_stats:
         order: 10000
     sompy:
         order: 9990
     sex_check:
         order: 9980
+    samplesheet_samplename_patterns:
+        order: 10
 
 # Overwrite the defaults of which table columns are visible by default
 # in the General Statistics table
