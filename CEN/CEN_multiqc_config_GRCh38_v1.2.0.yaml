@@ -435,6 +435,10 @@ custom_table_header_config:
             with_mate_mapped_to_a_different_chr_passed:
                 format: "{:,.3f}"
 
+# Ignore samples that do not match relevant assay codes
+sample_names_ignore_re:
+- '^(?!.*(-EGG5|-9527-|-9617-)).*$'
+
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
 sp:
