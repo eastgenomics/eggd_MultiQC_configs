@@ -135,6 +135,7 @@ module_order:
     - samtools
     - fastqc
     - bclconvert
+    - interop
 
 # Make the samplesheet_samplename_patterns subsection
 report_section_order:
@@ -297,8 +298,6 @@ custom_data:
                 title: 'well column'
             well_row:
                 title: 'well row'
-    sample_names_ignore_re:
-    - '^(?!.*(-(EGG2|-10056-|-10055-|-2327)).*$'
     samplesheet_samplename_patterns:
         file_format: 'tsv'
         plot_type: 'table'
@@ -307,6 +306,8 @@ custom_data:
                 title: 'Well column / row'
             samplenames:
                 title: 'Sample name patterns'
+        sample_names_ignore_re:
+        - '^(?!.*(-(EGG2|-10056-|-10055-|-2327))).*$'
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
@@ -354,6 +355,12 @@ sp:
     bclconvert/unknown_barcodes:
         fn: 'Top_Unknown_Barcodes.csv'
         shared: true
+    interop/summary:
+        fn: 'interop_summary.csv'
+        shared: true
+    interop/index-summary:
+        fn: 'interop_index_summary.csv'
+        shared: true
     samplesheet_wells:
         fn: 'samplesheet_wells.tsv'
     samplesheet_samplename_patterns:
@@ -394,3 +401,5 @@ dx_sp:
             - 'Quality_Metrics.csv'
             - 'RunInfo.xml'
             - 'Top_Unknown_Barcodes.csv'
+            - 'interop_index_summary.csv'
+            - 'interop_sumary.csv'
