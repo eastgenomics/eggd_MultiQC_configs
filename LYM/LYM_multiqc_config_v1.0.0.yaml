@@ -135,7 +135,6 @@ module_order:
     - samtools
     - fastqc
     - bclconvert
-    - interop
 
 # Make the samplesheet_samplename_patterns subsection
 report_section_order:
@@ -352,12 +351,6 @@ sp:
         shared: true
     bclconvert/unknown_barcodes:
         fn: 'Top_Unknown_Barcodes.csv'
-        shared: true
-    interop/summary:
-        fn: 'interop_summary.csv'
-        shared: true
-    interop/index-summary:
-        fn: 'interop_index_summary.csv'
         shared: true
     samplesheet_wells:
         fn: 'samplesheet_wells.tsv'
