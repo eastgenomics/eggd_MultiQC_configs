@@ -477,6 +477,10 @@ sp:
 exclude_modules:
     - somalier
 
+# Ignore samples that do not match relevant assay codes
+sample_names_ignore_re:
+    - '^(?!.*(-EGG4|-9526-|-9688-|-1288-|-10028)).*$'
+
 # Specify location and file extensions of QC metrics to be downloaded
 # to the workstation by the app:
 dx_sp:
