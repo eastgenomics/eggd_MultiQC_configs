@@ -297,6 +297,8 @@ custom_data:
                 title: 'well column'
             well_row:
                 title: 'well row'
+    sample_names_ignore_re:
+    - '^(?!.*(-(EGG2|-10056-|-10055-|-2327)).*$'
     samplesheet_samplename_patterns:
         file_format: 'tsv'
         plot_type: 'table'
