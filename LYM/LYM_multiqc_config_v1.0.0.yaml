@@ -306,8 +306,8 @@ custom_data:
                 title: 'Well column / row'
             samplenames:
                 title: 'Sample name patterns'
-        sample_names_ignore_re:
-        - '^(?!.*(-(EGG2|-10056-|-10055-|-2327))).*$'
+    sample_names_ignore_re:
+        - '^(?!.*(-(10056-|-10055-|-2327)-|EGG2)).*$'
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
