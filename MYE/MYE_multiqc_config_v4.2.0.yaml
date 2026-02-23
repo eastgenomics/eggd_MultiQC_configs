@@ -183,10 +183,6 @@ custom_table_header_config:
             hidden: True
         custom_content_custom_coverage-1000x:
             hidden: True
-        custom_content_samplesheet_wells-well_column:
-            hidden: True
-        custom_content_samplesheet_wells-well_row:
-            hidden: True
         picard_hsmetrics-FOLD_ENRICHMENT:
             hidden: True
         picard_hsmetrics-MEDIAN_TARGET_COVERAGE:
