@@ -183,10 +183,6 @@ custom_table_header_config:
             hidden: True
         custom_content_custom_coverage-1000x:
             hidden: True
-        custom_content_samplesheet_wells-well_column:
-            hidden: True
-        custom_content_samplesheet_wells-well_row:
-            hidden: True
         picard_hsmetrics-FOLD_ENRICHMENT:
             hidden: True
         picard_hsmetrics-MEDIAN_TARGET_COVERAGE:
@@ -295,6 +291,9 @@ custom_data:
             samplenames:
                 title: 'Sample name patterns'
 
+# Ignore samples that do not match relevant assay codes
+sample_names_ignore_re:
+    - '^(?!.*(-(8128|8476|5877|2327|10051)-|EGG2)).*$'
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
 # for the defaults. Remove a default by setting it to null.
 sp:
