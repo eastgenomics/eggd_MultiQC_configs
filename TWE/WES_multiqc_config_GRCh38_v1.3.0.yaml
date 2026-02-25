@@ -36,6 +36,9 @@ subtitle: Twist WES     # Grey text below title
 output_fn_name: multiqc_report.html
 data_dir_name: multiqc_data
 
+# Assay codes
+assay_code: -EGG4|-9526-|-9688-|-1288-|-10028
+
 # Prepend sample names with their directory. Useful if analysing the
 # same samples with different parameters.
 prepend_dirs: False
@@ -426,7 +429,11 @@ sp:
     bcl2fastq:
         fn: 'Stats.json'
     fastqc/data:
-        fn: '*.stats-fastqc.txt'
+        - fn: '*-EGG4*.stats-fastqc.txt'
+        - fn: '*-9526-*.stats-fastqc.txt'
+        - fn: '*-9688-*.stats-fastqc.txt'
+        - fn: '*-1288-*.stats-fastqc.txt'
+        - fn: '*-10028-*.stats-fastqc.txt'
     picard/alignment_metrics:
         fn: '*.AlignmentStat_metrics.txt'
         shared: true
@@ -476,10 +483,6 @@ sp:
 # Remove module sections from HTML report
 exclude_modules:
     - somalier
-
-# Ignore samples that do not match relevant assay codes
-sample_names_ignore_re:
-    - '^(?!.*(-EGG4|-9526-|-9688-|-1288-|-10028)).*$'
 
 # Specify location and file extensions of QC metrics to be downloaded
 # to the workstation by the app:
