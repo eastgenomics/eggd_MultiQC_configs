@@ -346,7 +346,7 @@ sp:
     interop/index-summary:
         fn: 'interop_index_summary.csv'
     samplesheet_wells:
-        fn: 'samplesheet_wells.tsv'
+        fn: 'samplesheet_wells_filtered.tsv'
     samplesheet_samplename_patterns:
         fn: 'samplesheet_well_samplename_patterns.tsv'
 
