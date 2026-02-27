@@ -272,3 +272,5 @@ dx_sp:
             - 'MetricsOutput_MultiQC_RNA.tsv'
         picard/QC:
             - '*variantcallingmetrics.variant_calling_detail_metrics'
+        sex_check:
+            - "*_mqc.json"
