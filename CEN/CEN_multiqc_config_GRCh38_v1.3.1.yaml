@@ -488,7 +488,7 @@ sp:
     somalier_files:
         fn: '*_somalier.samples.tsv'
     samplesheet_wells:
-        fn: 'samplesheet_wells.tsv'
+        fn: 'samplesheet_wells_filtered.tsv'
     samplesheet_samplename_patterns:
         fn: 'samplesheet_well_samplename_patterns.tsv'
 
