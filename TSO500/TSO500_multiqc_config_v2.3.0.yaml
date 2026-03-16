@@ -185,6 +185,13 @@ custom_data:
         format: '{:,.0f}'
         placement: 400
 
+table_cond_formatting_colours:
+    - blue: '#337ab7'
+    - lbue: '#5bc0de'
+    - pass: '#5cb85c'
+    - warn: '#f0ad4e'
+    - fail: '#d9534f'
+
 table_cond_formatting_rules:
   MEDIAN_INSERT_SIZE:
     fail:
