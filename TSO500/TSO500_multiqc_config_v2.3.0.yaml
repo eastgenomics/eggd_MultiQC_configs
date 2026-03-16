@@ -104,7 +104,7 @@ custom_data:
     plot_type: "table"
     pconfig:
       id: "tso500_metricsoutput_dna"
-      title: "TSO500 MetricsOutput RNA"
+      title: "TSO500 MetricsOutput DNA"
       scale: false
     headers:
       COMPLETED_ALL_STEPS:
@@ -155,35 +155,6 @@ custom_data:
         description: "Median Bin Count CNV Target"
         format: '{:,.1f}'
         placement: 1000
-  metricsoutput_rna:
-    file_format: "tsv"
-    section_name: "MetricsOutput RNA"
-    description: "This table comes from the MetricsOutput.tsv file of eggd_tso500"
-    plot_type: "table"
-    pconfig:
-      id: "tso500_metricsoutput_rna"
-      title: "TSO500 MetricsOutput RNA"
-      scale: false
-    headers:
-      COMPLETED_ALL_STEPS:
-        title: "Completed"
-        description: "Are all steps completed?"
-        placement: 100
-      MEDIAN_CV_GENE_500X:
-        title: "CV Gene 500x"
-        description: "Median CV Gene 500x"
-        format: '{:,.2f}'
-        placement: 200
-      TOTAL_ON_TARGET_READS:
-        title: "Target Reads"
-        description: "Total On Target Reads"
-        format: '{:,.0f}'
-        placement: 300
-      MEDIAN_INSERT_SIZE_RNA:
-        title: "Insert Size"
-        description: "Median Insert Size RNA"
-        format: '{:,.0f}'
-        placement: 400
 
 table_cond_formatting_colours:
     - blue: '#337ab7'
@@ -217,9 +188,6 @@ table_cond_formatting_rules:
   TOTAL_ON_TARGET_READS:
     fail:
       - lt: 9000000
-  MEDIAN_INSERT_SIZE_RNA:
-    fail:
-      - lt: 80
 
 # Overwrite module order (in report).
 # See multiqc/utils/config_defaults.yaml for the defaults.
@@ -251,8 +219,6 @@ sp:
     #     contents: 'in total (QC-passed reads + QC-failed reads)'
     metricsoutput_dna:
         fn: 'MetricsOutput_MultiQC_DNA.tsv'
-    metricsoutput_rna:
-        fn: 'MetricsOutput_MultiQC_RNA.tsv'
     picard/variant_calling_metrics:
         fn: '*variantcallingmetrics.variant_calling_detail_metrics'
         shared: true
@@ -275,8 +241,6 @@ dx_sp:
             - '*.stats-fastqc.txt'
         metricsoutput_dna:
             - 'MetricsOutput_MultiQC_DNA.tsv'
-        metricsoutput_rna:
-            - 'MetricsOutput_MultiQC_RNA.tsv'
         picard/QC:
             - '*variantcallingmetrics.variant_calling_detail_metrics'
         sex_check:
