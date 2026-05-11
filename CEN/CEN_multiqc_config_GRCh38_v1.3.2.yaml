@@ -107,7 +107,7 @@ plots_force_flat: False          # Try to use only flat image graphs
 plots_force_interactive: True   # Try to use only interactive javascript graphs
 plots_flat_numseries: 200        # If neither of the above, use flat if > this number of datasets
 num_datasets_plot_limit: 100      # If interactive, don't plot on load if > this number of datasets
-max_table_rows: 500              # Swap tables for a beeswarm plot above this
+max_table_rows: 800              # Swap tables for a beeswarm plot above this
 no_ai: True
 plots_num_samples_do_not_automatically_load: 100
 
