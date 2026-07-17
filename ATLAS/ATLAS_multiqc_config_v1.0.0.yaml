@@ -135,7 +135,7 @@ table_columns_visible:
     verifyBAMID:
         CHIPMIX: False
     Picard:
-        PERCENT_DUPLICATION: False
+        #PERCENT_DUPLICATION: False
         PCT_TARGET_BASES_100X: False
         TOTAL_READS: False
         PCT_PF_READS_ALIGNED: False
@@ -148,6 +148,8 @@ table_columns_placement:
     general_stats_table:
         mapped_passed: 930
         FREEMIX: 940
+        PERCENT_DUPLICATION: 945
+        ESTIMATED_LIBRARY_SIZE: 947
         250x: 950
         summed_median: 960
         PCT_AMPLIFIED_BASES: 970
@@ -181,6 +183,15 @@ custom_table_header_config:
             hidden: True
         picard_variantcallingmetrics-NOVEL_TITV:
             hidden: True
+        picard_markdups-PERCENT_DUPLICATION:
+            title: '% Duplication (UMI Dedup)'
+            description: 'Duplication rate from Sentieon Dedup with UMI-aware LocusCollector (Duplication_metrics.txt)'
+            max: 100
+            min: 0
+            suffix: '%'
+        picard_markdups-ESTIMATED_LIBRARY_SIZE:
+            title: 'Est. Library Size (UMI Dedup)'
+            description: 'Estimated library size from Sentieon Dedup with UMI-aware LocusCollector'
     picard_variantcallingmetrics_table:
         variantcallingmetrics-HET_HOMVAR_RATIO:
             hidden: True
