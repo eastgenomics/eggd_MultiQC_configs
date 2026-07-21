@@ -154,8 +154,8 @@ table_columns_placement:
     general_stats_table:
         mapped_passed: 930
         FREEMIX: 940
-        PERCENT_DUPLICATION: 946
-        ESTIMATED_LIBRARY_SIZE: 947
+        picard_mark_duplicates-PERCENT_DUPLICATION: 946
+        picard_mark_duplicates-ESTIMATED_LIBRARY_SIZE: 947
         250x: 950
         summed_median: 960
         PCT_AMPLIFIED_BASES: 970
@@ -189,13 +189,13 @@ custom_table_header_config:
             hidden: True
         picard_variantcallingmetrics-NOVEL_TITV:
             hidden: True
-        picard_markdups-PERCENT_DUPLICATION:
+        picard_mark_duplicates-PERCENT_DUPLICATION:
             title: '% Duplication (UMI Dedup)'
             description: 'Duplication rate from Sentieon Dedup with UMI-aware LocusCollector (Duplication_metrics.txt)'
             max: 100
             min: 0
             suffix: '%'
-        picard_markdups-ESTIMATED_LIBRARY_SIZE:
+        picard_mark_duplicates-ESTIMATED_LIBRARY_SIZE:
             title: 'Est. Library Size (UMI Dedup)'
             description: 'Estimated library size from Sentieon Dedup with UMI-aware LocusCollector'
             hidden: False
