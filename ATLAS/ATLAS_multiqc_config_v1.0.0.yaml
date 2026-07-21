@@ -61,7 +61,7 @@ extra_fn_clean_exts:
     - type: remove
       pattern: '_metrics'
     - type: remove
-      pattern: '.Duplication_metrics'
+      pattern: '.dedup_metrics'
     - type: remove
       pattern: '.Duplication'
     - type: remove
@@ -141,6 +141,7 @@ table_columns_visible:
         PCT_PF_READS_ALIGNED: False
         MEDIAN_TARGET_COVERAGE: False
         FOLD_ENRICHMENT: False
+        ESTIMATED_LIBRARY_SIZE: True
     FastQC: False
     bcl2fastq: False
 
@@ -148,7 +149,7 @@ table_columns_placement:
     general_stats_table:
         mapped_passed: 930
         FREEMIX: 940
-        PERCENT_DUPLICATION: 945
+        PERCENT_DUPLICATION: 946
         ESTIMATED_LIBRARY_SIZE: 947
         250x: 950
         summed_median: 960
@@ -192,6 +193,7 @@ custom_table_header_config:
         picard_markdups-ESTIMATED_LIBRARY_SIZE:
             title: 'Est. Library Size (UMI Dedup)'
             description: 'Estimated library size from Sentieon Dedup with UMI-aware LocusCollector'
+            hidden: False
     picard_variantcallingmetrics_table:
         variantcallingmetrics-HET_HOMVAR_RATIO:
             hidden: True
@@ -205,18 +207,31 @@ table_cond_formatting_colours:
 
 # Thresholds removed but placeholders kept
 table_cond_formatting_rules:
+    # Columns in the General Statistics table
     custom_content_custom_coverage-250x:
-        pass: []
-        warn: []
-    verifybamid-FREEMIX:
-        pass: []
-        warn: []
-    picard_insertsizemetrics-summed_median:
-        pass: []
-        warn: []
-    hsmetrics-FOLD_80_BASE_PENALTY:
-        pass: []
-        warn: []
+        pass:
+            - lt: 101
+        warn:
+            - eq: 90.0
+            - lt: 90.0
+    verifybamid-FREEMIX: #verifyBamId Contaminntion column in General Stats
+        pass:
+            - lt: 10
+        warn:
+            - eq: 10
+            - gt: 10
+    picard_insertsizemetrics-summed_median: # Picard Median Insert Size
+        pass:
+            - gt: 150
+        warn:
+            - eq: 150
+            - lt: 150
+    hsmetrics-FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
+        pass:
+            - lt: 1.80
+        warn:
+            - eq: 1.80
+            - gt: 1.80
 
 custom_data:
     custom_coverage:
@@ -275,6 +290,19 @@ custom_data:
                 title: 'Well column / row'
             samplenames:
                 title: 'Sample name patterns'
+    umi_metrics:
+        file_format: 'keyval'
+        plot_type: 'generalstats'
+        pconfig:
+            - PERCENT_DUPLICATION:
+                title: 'UMI duplication rate'
+                description: 'UMI-aware duplication rate from Sentieon Dedup'
+                max: 1
+                min: 0
+            - ESTIMATED_LIBRARY_SIZE:
+                title: 'Est. Library Size (UMI Dedup)'
+                description: 'Estimated library size from Sentieon UMI-aware Dedup'
+                min: 0
 
 sp:
     fastqc/data:
@@ -288,7 +316,7 @@ sp:
         fn: '*.alignment_summary_metrics'
         shared: true
     picard/markdups:
-        fn: '*.Duplication_metrics.txt'
+        fn: '*.dedup_metrics.txt'
         shared: true
     picard/insertsize:
         fn: '*.insert_size_metrics'
@@ -335,8 +363,8 @@ remove_sections:
     - picard_hsmetrics_target_bases
     - fastqc_per_base_sequence_content
 
-exclude_modules:
-    - sentieon
+#exclude_modules:
+#    - sentieon
 
 dx_sp:
     primary:
@@ -349,6 +377,7 @@ dx_sp:
             - '*.insert_size_metrics'
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
+            - '*.dedup_metrics.txt'
         verifybamid/QC:
             - '*.selfSM'
         samtools:
