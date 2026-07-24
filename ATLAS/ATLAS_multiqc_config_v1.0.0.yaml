@@ -71,8 +71,6 @@ extra_fn_clean_exts:
     - type: remove
       pattern: '.GCBias'
     - type: remove
-      pattern: '.InsertSize'
-    - type: remove
       pattern: '.MeanQualityByCycle_metrics'
     - type: remove
       pattern: '.QualDistribution_metrics'
@@ -80,6 +78,8 @@ extra_fn_clean_exts:
       pattern: '_sorted'
     - type: remove
       pattern: '_unsorted'
+    - type: remove
+      pattern: '.insert_size'   
 
 
 # Ignore files larger than this when searcing for logs (bytes)
@@ -107,6 +107,7 @@ use_filename_as_sample_name:
     - picard/markdups
     - picard/gcbias
     - picard/pcr_metrics
+    - picard/insertsize
     - picard/quality_by_cycle
     - picard/quality_score_distribution
 
@@ -324,7 +325,7 @@ sp:
         fn: '*.dedup_metrics.txt'
         shared: true
     picard/insertsize:
-        fn: '*.insert_size_metrics'
+        fn: '*.InsertSize_metrics.txt'
         shared: true
     picard/hsmetrics:
         fn: '*.hsmetrics.tsv'
