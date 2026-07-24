@@ -10,6 +10,6 @@ There are multiple assays which use different multiQC config files, the list are
 :four: PANCAN  
 :five: SNP  
 :six: TSO500  
-:seven: TWE
+:seven: TWE  
 :eight: ATLAS   
 
