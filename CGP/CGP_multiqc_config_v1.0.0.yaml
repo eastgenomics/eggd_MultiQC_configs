@@ -129,6 +129,8 @@ report_section_order:
         order: 9990
     sex_check:
         order: 9980
+    sentieon_umi:
+        order: 9970
     samplesheet_samplename_patterns:
         order: 10
 
