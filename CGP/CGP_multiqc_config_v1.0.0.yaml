@@ -107,7 +107,6 @@ use_filename_as_sample_name:
     - picard/markdups
     - picard/gcbias
     - picard/pcr_metrics
-    - picard/insertsize
     - picard/quality_by_cycle
     - picard/quality_score_distribution
 
@@ -117,6 +116,7 @@ module_order:
     - verifybamid:
         extra: ""
     - picard
+    - sentieon_umi
     - samtools
     - fastqc
     - bcl2fastq
@@ -226,12 +226,6 @@ table_cond_formatting_rules:
         warn:
             - eq: 10
             - gt: 10
-    picard_insertsizemetrics-summed_median: # Picard Median Insert Size
-        pass:
-            - gt: 150
-        warn:
-            - eq: 150
-            - lt: 150
     hsmetrics-FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
         pass:
             - lt: 1.80
@@ -311,21 +305,16 @@ custom_data:
                 min: 0
 
 sp:
+    sentieon_umi/insertsize:
+        fn: '*.InsertSize_metrics.txt'
+        shared: true
     fastqc/data:
-        - fn: '*EGG2*.stats-fastqc.txt'
-        - fn: '*-8128-*.stats-fastqc.txt'
-        - fn: '*-8476-*.stats-fastqc.txt'
-        - fn: '*-5877-*.stats-fastqc.txt'
-        - fn: '*-2327-*.stats-fastqc.txt'
-        - fn: '*-10051-*.stats-fastqc.txt'
+        - fn: '*CGP*.stats-fastqc.txt'
     picard/alignment_metrics:
         fn: '*.alignment_summary_metrics'
         shared: true
     picard/markdups:
         fn: '*.dedup_metrics.txt'
-        shared: true
-    picard/insertsize:
-        fn: '*.InsertSize_metrics.txt'
         shared: true
     picard/hsmetrics:
         fn: '*.hsmetrics.tsv'
@@ -374,13 +363,14 @@ remove_sections:
 
 dx_sp:
     primary:
+        sentieon_umi:
+            - '*.InsertSize_metrics.txt'
         fastqc:
             - '*.stats-fastqc.txt'
         picard/QC:
             - '*.alignment_summary_metrics'
             - '*.hsmetrics.tsv'
             - '*.gc_bias.detail_metrics'
-            - '*.insert_size_metrics'
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
             - '*.dedup_metrics.txt'
