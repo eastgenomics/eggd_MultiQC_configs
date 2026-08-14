@@ -107,6 +107,7 @@ use_filename_as_sample_name:
     - picard/markdups
     - picard/gcbias
     - picard/pcr_metrics
+    - picard/insertsize
     - picard/quality_by_cycle
     - picard/quality_score_distribution
 
@@ -116,7 +117,6 @@ module_order:
     - verifybamid:
         extra: ""
     - picard
-    - sentieon_umi
     - samtools
     - fastqc
     - bcl2fastq
@@ -129,8 +129,6 @@ report_section_order:
         order: 9990
     sex_check:
         order: 9980
-    sentieon_umi:
-        order: 9970
     samplesheet_samplename_patterns:
         order: 10
 
@@ -162,6 +160,7 @@ table_columns_placement:
         250x: 950
         summed_median: 960
         PCT_AMPLIFIED_BASES: 970
+        Usable_unique_bases_on_target: 980
 
 picard_config:
     general_stats_target_coverage:
@@ -227,6 +226,12 @@ table_cond_formatting_rules:
         warn:
             - eq: 10
             - gt: 10
+    picard_insertsizemetrics-summed_median: # Picard Median Insert Size
+        pass:
+            - gt: 150
+        warn:
+            - eq: 150
+            - lt: 150
     hsmetrics-FOLD_80_BASE_PENALTY: # Picard HSMetrics fold 80 base penalty column
         pass:
             - lt: 1.80
@@ -269,7 +274,12 @@ custom_data:
                 max: 100
                 min: 0
                 suffix: '%'
-            
+            - Usable unique bases on-target:
+                description: 'Percentage of unique bases on target'
+                title: '% Usable unique bases on-target'
+                max: 100
+                min: 0
+                suffix: '%'
     samplesheet_wells:
         file_format: 'tsv'
         plot_type: 'generalstats'
@@ -367,6 +377,7 @@ dx_sp:
             - '*.alignment_summary_metrics'
             - '*.hsmetrics.tsv'
             - '*.gc_bias.detail_metrics'
+            - '*.insert_size_metrics'
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
             - '*.dedup_metrics.txt'
