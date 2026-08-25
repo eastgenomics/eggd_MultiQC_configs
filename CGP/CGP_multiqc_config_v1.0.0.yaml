@@ -80,7 +80,11 @@ extra_fn_clean_exts:
       pattern: '_unsorted'
     - type: remove
       pattern: '.insert_size'   
+    - type: remove
+      pattern: '.InsertSize'
 
+extra_fn_clean_trim:
+    - '.InsertSize'
 
 # Ignore files larger than this when searcing for logs (bytes)
 log_filesize_limit: 5000000000
@@ -370,7 +374,7 @@ dx_sp:
             - '*.alignment_summary_metrics'
             - '*.hsmetrics.tsv'
             - '*.gc_bias.detail_metrics'
-            - '*.insert_size_metrics'
+            #- '*.insert_size_metrics'
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
             - '*.dedup_metrics.txt'
