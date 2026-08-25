@@ -374,7 +374,6 @@ dx_sp:
             - '*.alignment_summary_metrics'
             - '*.hsmetrics.tsv'
             - '*.gc_bias.detail_metrics'
-            #- '*.insert_size_metrics'
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
             - '*.dedup_metrics.txt'
