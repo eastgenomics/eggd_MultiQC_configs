@@ -11,4 +11,5 @@ There are multiple assays which use different multiQC config files, the list are
 :five: SNP  
 :six: TSO500  
 :seven: TWE  
+:eight: ATLAS   
 
