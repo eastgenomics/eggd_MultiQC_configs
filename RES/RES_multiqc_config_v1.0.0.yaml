@@ -135,11 +135,20 @@ table_cond_formatting_rules:
         pass:                                     
             - lt: 58006
         warn:
-            - eq: 17500
-            - lt: 17500
+            - eq: 18299
+            - lt: 18299
         fail:
-            - eq: 15000
-            - lt: 15000
+            - eq: 15599
+            - lt: 15599
+    rna_seqc-Expression_Profiling_Efficiency:     # number of genes with at least 5 reads
+        pass:                                     
+            - lt: 100
+        warn:
+            - eq: 72.999
+            - lt: 72.999
+        fail:
+            - eq: 69.999
+            - lt: 69.999
 
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
