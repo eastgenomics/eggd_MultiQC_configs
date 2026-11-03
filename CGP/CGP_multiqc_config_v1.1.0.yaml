@@ -336,6 +336,8 @@ sp:
         shared: true
     picard/variant_calling_metrics:
         fn: '*.variantcallingmetrics.variant_calling_detail_metrics'
+    purple/purity:
+        fn: '*.purple.purity.tsv'
     verifybamid/selfsm:
         fn: '*.selfSM'
     samtools/flagstat:
@@ -377,6 +379,8 @@ dx_sp:
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
             - '*.dedup_metrics.txt'
+        purple:
+            - '*.purple.purity.tsv'
         verifybamid/QC:
             - '*.selfSM'
         samtools:
