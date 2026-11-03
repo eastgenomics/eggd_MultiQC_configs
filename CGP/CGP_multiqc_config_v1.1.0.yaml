@@ -308,9 +308,6 @@ custom_data:
                 min: 0
 
 sp:
-    sentieon_umi/insertsize:
-        fn: '*.InsertSize_metrics.txt'
-        shared: true
     fastqc/data:
         - fn: '*CGP*.stats-fastqc.txt'
     picard/alignment_metrics:
@@ -318,6 +315,9 @@ sp:
         shared: true
     picard/markdups:
         fn: '*.dedup_metrics.txt'
+        shared: true
+    picard/insertsize:
+        fn: '*.insert_size_metrics'
         shared: true
     picard/hsmetrics:
         fn: '*.hsmetrics.tsv'
@@ -368,14 +368,13 @@ remove_sections:
 
 dx_sp:
     primary:
-        sentieon_umi:
-            - '*.InsertSize_metrics.txt'
         fastqc:
             - '*.stats-fastqc.txt'
         picard/QC:
             - '*.alignment_summary_metrics'
             - '*.hsmetrics.tsv'
             - '*.gc_bias.detail_metrics'
+            - '*.insert_size_metrics'
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
             - '*.dedup_metrics.txt'
