@@ -152,6 +152,9 @@ table_columns_visible:
         MEDIAN_TARGET_COVERAGE: False
         FOLD_ENRICHMENT: False
         ESTIMATED_LIBRARY_SIZE: True
+    PURPLE:
+        purity: False
+        ploidy: False
     FastQC: False
     bcl2fastq: False
 
