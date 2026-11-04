@@ -203,9 +203,9 @@ custom_table_header_config:
             title: 'Est. Library Size (UMI Dedup)'
             description: 'Estimated library size from Sentieon Dedup with UMI-aware LocusCollector'
             hidden: False
-    picard_variantcallingmetrics_table:
-        variantcallingmetrics-HET_HOMVAR_RATIO:
-            hidden: True
+        picard_variantcallingmetrics_table:
+            variantcallingmetrics-HET_HOMVAR_RATIO:
+                hidden: True
 
 table_cond_formatting_colours:
     - blue: '#337ab7'
