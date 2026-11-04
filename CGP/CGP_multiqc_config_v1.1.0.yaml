@@ -152,6 +152,9 @@ table_columns_visible:
         MEDIAN_TARGET_COVERAGE: False
         FOLD_ENRICHMENT: False
         ESTIMATED_LIBRARY_SIZE: True
+    PURPLE:
+        purity: False
+        ploidy: False
     FastQC: False
     bcl2fastq: False
 
@@ -203,9 +206,9 @@ custom_table_header_config:
             title: 'Est. Library Size (UMI Dedup)'
             description: 'Estimated library size from Sentieon Dedup with UMI-aware LocusCollector'
             hidden: False
-    picard_variantcallingmetrics_table:
-        variantcallingmetrics-HET_HOMVAR_RATIO:
-            hidden: True
+        picard_variantcallingmetrics_table:
+            variantcallingmetrics-HET_HOMVAR_RATIO:
+                hidden: True
 
 table_cond_formatting_colours:
     - blue: '#337ab7'
@@ -308,9 +311,6 @@ custom_data:
                 min: 0
 
 sp:
-    sentieon_umi/insertsize:
-        fn: '*.InsertSize_metrics.txt'
-        shared: true
     fastqc/data:
         - fn: '*CGP*.stats-fastqc.txt'
     picard/alignment_metrics:
@@ -318,6 +318,9 @@ sp:
         shared: true
     picard/markdups:
         fn: '*.dedup_metrics.txt'
+        shared: true
+    picard/insertsize:
+        fn: '*.insert_size_metrics'
         shared: true
     picard/hsmetrics:
         fn: '*.hsmetrics.tsv'
@@ -336,6 +339,8 @@ sp:
         shared: true
     picard/variant_calling_metrics:
         fn: '*.variantcallingmetrics.variant_calling_detail_metrics'
+    purple/purity:
+        fn: '*.purple.purity.tsv'
     verifybamid/selfsm:
         fn: '*.selfSM'
     samtools/flagstat:
@@ -366,17 +371,18 @@ remove_sections:
 
 dx_sp:
     primary:
-        sentieon_umi:
-            - '*.InsertSize_metrics.txt'
         fastqc:
             - '*.stats-fastqc.txt'
         picard/QC:
             - '*.alignment_summary_metrics'
             - '*.hsmetrics.tsv'
             - '*.gc_bias.detail_metrics'
+            - '*.insert_size_metrics'
             - '*.pertarget_coverage.tsv'
             - '*.variantcallingmetrics.variant_calling_detail_metrics'
             - '*.dedup_metrics.txt'
+        purple:
+            - '*.purple.purity.tsv'
         verifybamid/QC:
             - '*.selfSM'
         samtools:
