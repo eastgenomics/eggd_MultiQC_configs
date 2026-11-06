@@ -140,7 +140,7 @@ table_cond_formatting_rules:
         fail:
             - eq: 15599
             - lt: 15599
-    rna_seqc-Expression_Profiling_Efficiency:     # number of genes with at least 5 reads
+    rna_seqc-Expression_Profiling_Efficiency:      # expression efficienty (percentage of reads mapping to exons)
         pass:                                     
             - lt: 100
         warn:
