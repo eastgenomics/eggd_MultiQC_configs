@@ -209,6 +209,13 @@ custom_table_header_config:
         picard_variantcallingmetrics_table:
             variantcallingmetrics-HET_HOMVAR_RATIO:
                 hidden: True
+    purple_summary:
+        msStatus:
+            hidden: True
+        tmlStatus:
+            hidden: True
+        tmbStatus:
+            hidden: True
 
 table_cond_formatting_colours:
     - blue: '#337ab7'
