@@ -37,7 +37,7 @@ output_fn_name: multiqc_report.html
 data_dir_name: multiqc_data
 
 # Prepend sample names with their directory. Useful if analysing the
-# sample samples with different parameters.
+# same samples with different parameters.
 prepend_dirs: False
 # Whether to create the parsed data directory in addition to the report
 make_data_dir: True
@@ -77,7 +77,7 @@ extra_fn_clean_exts:
     - type: remove
       pattern: '.QualDistribution_metrics'
 
-# Ignore files larger than this when searcing for logs (bytes)
+# Ignore files larger than this when searching for logs (bytes)
 log_filesize_limit: 5000000000
 # MultiQC skips a couple of debug messages when searching files as the
 # log can get very verbose otherwise. Re-enable here to help debugging.
