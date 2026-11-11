@@ -122,7 +122,10 @@ table_columns_placement:
 sp:
     fastqc/data:
         fn: '*.stats-fastqc.txt'
-
+    interop/summary:
+        fn: 'interop_summary.csv'
+    interop/index-summary:
+        fn: 'interop_index_summary.csv'
 
 # # Remove plots from HTML report
 # remove_sections:
