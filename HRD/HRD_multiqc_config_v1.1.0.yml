@@ -100,12 +100,9 @@ max_table_rows: 500              # Swap tables for a beeswarm plot above this
 # Overwrite module order (in report).
 # See multiqc/utils/config_defaults.yaml for the defaults.
 module_order:
-    - fastqc:
-        module_tag:
-            - DNA
-    - bcl2fastq:
-        module_tag:
-            - DNA
+    - fastqc
+    - bcl2fastq
+    - interop
 
 table_columns_visible:
     FastQC:
