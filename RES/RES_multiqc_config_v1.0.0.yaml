@@ -144,11 +144,11 @@ table_cond_formatting_rules:
         pass:                                     
             - lt: 100
         warn:
-            - eq: 72.999
-            - lt: 72.999
+            - eq: 72.999999
+            - lt: 72.999999
         fail:
-            - eq: 69.999
-            - lt: 69.999
+            - eq: 69.999999
+            - lt: 69.999999
 
 
 # Overwrite module filename search patterns. See multiqc/utils/search_patterns.yaml
