@@ -12,4 +12,5 @@ There are multiple assays which use different multiQC config files, the list are
 :six: TSO500  
 :seven: TWE  
 :eight: CGP   
+:nine: RES   
 
